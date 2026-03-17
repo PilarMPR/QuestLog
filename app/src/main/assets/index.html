@@ -59,6 +59,8 @@ body{background:#e8dcc0;color:#2a1a08;font-family:'IM Fell English',serif;min-he
 .day-ring-time{font-family:'Cinzel Decorative',serif;font-size:1.05rem;color:#f5d878;letter-spacing:.04em;line-height:1;text-shadow:0 0 12px rgba(240,200,60,.4);}
 .day-ring-label{font-family:'Cinzel',serif;font-size:.48rem;color:rgba(220,170,60,.85);letter-spacing:.14em;text-transform:uppercase;margin-top:.12rem;}
 .day-ring-remain{font-size:.46rem;color:rgba(200,160,80,.7);margin-top:.1rem;font-style:italic;}
+.sleep-btn{background:none;border:1px solid rgba(100,100,180,.35);color:rgba(160,160,220,.7);font-family:'Cinzel',serif;font-size:.38rem;letter-spacing:.06em;padding:.12rem .4rem;cursor:pointer;flex-shrink:0;}
+.sleep-btn.active{background:rgba(40,40,100,.5);border-color:rgba(120,120,255,.5);color:#a0a0ff;}
 .xp-fill{height:100%;background:linear-gradient(90deg,var(--gold-deep),#c8900a);transition:width .4s;}
 .xp-lbl{font-size:.38rem;color:var(--ink-faded);text-align:right;margin-top:.1rem;font-family:'Cinzel',serif;}
 
@@ -213,6 +215,10 @@ select{-webkit-appearance:none;}
 
 /* ══════════════ BOSS TAB ══════════════ */
 .boss-tab-wrap{padding:.6rem .7rem 5rem;}
+.bt-tpl-recur{font-size:.34rem;color:rgba(100,160,255,.6);border:1px solid rgba(80,120,220,.2);padding:.05rem .25rem;border-radius:2px;}
+.bt-tpl-recur.due{color:#ffaa30;border-color:rgba(255,160,30,.4);animation:recurPulse 2s ease infinite;}
+.bt-template.recur-due{border-color:rgba(255,160,30,.45)!important;box-shadow:0 0 8px rgba(255,140,10,.15);}
+@keyframes recurPulse{0%,100%{box-shadow:none;}50%{box-shadow:0 0 6px rgba(255,150,20,.3);}}
 /* Section headers */
 .bt-section-hdr{display:flex;align-items:center;gap:.45rem;padding:.28rem 0 .22rem;margin:.5rem 0 .35rem;border-bottom:1px solid rgba(180,30,10,.18);}
 .bt-section-hdr span:first-child{font-family:'Cinzel',serif;font-size:.55rem;color:#c04020;letter-spacing:.1em;text-transform:uppercase;flex:1;}
@@ -1283,6 +1289,7 @@ input[type=number].tr-inp::placeholder{-webkit-text-fill-color:rgba(180,140,50,.
     <div class="day-ring-label" id="day-ring-label">Amanecer</div>
     <div class="day-ring-remain" id="day-ring-remain">—</div>
   </div>
+  <button class="sleep-btn" id="sleep-btn" title="Modo sueño">🌙 Dormir</button>
 </div>
 
 <!-- DEBUFF BAR -->
@@ -1340,6 +1347,11 @@ input[type=number].tr-inp::placeholder{-webkit-text-fill-color:rgba(180,140,50,.
     <span id="wb-icon">💧</span>
     <div><div class="wb-title" id="wb-title">¡Bebe agua!</div><div class="wb-sub" id="wb-sub">Llevas más de 1h sin hidratarte.</div></div>
     <button class="wb-done" id="wb-done">✓</button>
+  </div>
+  <div class="wb" id="mv-banner" style="background:linear-gradient(135deg,#e8f4e0,#d8eccc);border-bottom-color:rgba(40,120,40,.2);">
+    <span>🏃</span>
+    <div><div class="wb-title" style="color:#2a6a2a">¡Muévete!</div><div class="wb-sub">Llevas más de 2h sin moverte.</div></div>
+    <button class="wb-done" id="mv-done" style="color:#2a6a2a;border-color:rgba(40,100,40,.3)">✓</button>
   </div>
   <div class="nq" id="nq-banner">
     <div><div class="nq-lbl">▶ Siguiente quest</div><div class="nq-name" id="nq-name">—</div></div>
@@ -2313,7 +2325,8 @@ const MAIN_QUESTS = [
   {id:'mq_review',   name:'Review semanal',  stat:'wis', recur:'fri',     prio:'high', icon:'📋', pomos:1},
   {id:'mq_creativa', name:'Sesión creativa', stat:'wis', recur:'sat',     prio:'med',  icon:'✨', pomos:2},
   {id:'mq_plan',     name:'Planificar semana',stat:'wis',recur:'sun',     prio:'high', icon:'🗓', pomos:1},
-  {id:'mq_dientes',  name:'Dientes',         stat:'cha', recur:'daily',   prio:'med',  icon:'🦷', habit:true},
+  {id:'mq_dientes_m', name:'Dientes (mañana)',  stat:'cha', recur:'daily', prio:'med', icon:'🦷', habit:true},
+  {id:'mq_dientes_n', name:'Dientes (noche)',   stat:'cha', recur:'daily', prio:'med', icon:'🦷', habit:true},
   {id:'mq_medicacion',name:'Medicación',     stat:'cha', recur:'daily',   prio:'high', icon:'💊', habit:true},
   {id:'mq_limpieza', name:'Limpiar cuarto',  stat:'str', recur:'sat',     prio:'high', icon:'🧹', type:'boss',
    stages:[
@@ -2379,6 +2392,7 @@ function defaultDB(){
     dailies:[], dailyMissed:0,
     rests:{ shortDate:'', shortUsed:0, longWeekKey:'', longUsed:false },
     activeBosses:[],
+    sleepMode:{until:0},
   };
 }
 function loadDB(){
@@ -2395,6 +2409,7 @@ function loadDB(){
   if(typeof db.dailyMissed!=='number') db.dailyMissed=0;
   if(!db.activeBosses) db.activeBosses=[];
   if(!db.impulse) db.impulse = igDefault();
+  if(!db.sleepMode) db.sleepMode={until:0};
 }
 function saveDB(){ localStorage.setItem(SK,JSON.stringify(db)); }
 
@@ -2949,9 +2964,12 @@ document.getElementById('toboss-confirm').addEventListener('click',()=>{
   t.type='boss';
   t.stages=stages;
   saveDB(); renderTasks();
+  // Also refresh boss tab if open
+  const bossTab=document.getElementById('tab-boss');
+  if(bossTab&&bossTab.classList.contains('active')) renderBossTab();
   document.getElementById('toboss-modal').classList.remove('show');
   _toBossTargetId=null;
-  toast('💀 Quest convertida en Boss Fight · '+stages.length+' fases');
+  toast('💀 Quest convertida en Boss Fight · '+stages.length+' fases — visible en tab Bosses');
 });
 
 // Combo tracker
@@ -3000,6 +3018,16 @@ function deleteTask(id,key){
 function skipMQ(mqId, key){
   const mq=[...MAIN_QUESTS,...(db.dailies||[])].find(q=>q.id===mqId);
   if(!mq) return;
+
+  // Weekly/monthly: no tribunal — just dismiss for today, no penalty
+  if(mq.recur==='weekly'||mq.recur==='monthly'){
+    const label=mq.recur==='weekly'?'semanal':'mensual';
+    ensureLog(key);
+    if(!db.log[key].skipped.includes(mqId)) db.log[key].skipped.push(mqId);
+    saveDB(); renderTasks();
+    toast(`🗓 Quest ${label} — aplazada, sin penalización`, 2500);
+    return;
+  }
   document.getElementById('reason-title').textContent='⚖️ El Tribunal';
   const list=document.getElementById('reason-list'); list.innerHTML='';
   list.innerHTML=`<div class="judge-subtitle">Misión: <strong>${mq.icon||'⚔️'} ${mq.name}</strong><br>El tribunal exige una respuesta honesta.</div>`;
@@ -3119,12 +3147,77 @@ const BOSS_TEMPLATES = [
     id:'bt_cv', icon:'📄', name:'Actualizar CV y Portfolio',
     desc:'Tu armadura necesita mantenimiento. Brilla de nuevo.',
     diff:2, stat:'cha', prio:'med',
+    recur:'monthly', recurDesc:'cada mes',
     stages:[
       {id:'s1', name:'Revisar y actualizar experiencia laboral'},
       {id:'s2', name:'Actualizar habilidades y proyectos'},
       {id:'s3', name:'Actualizar portfolio con proyectos nuevos'},
       {id:'s4', name:'Revisar diseño y formato'},
       {id:'s5', name:'Enviar a 3 contactos para feedback'},
+    ]
+  },
+  {
+    id:'bt_cuarto', icon:'🗂️', name:'Organización del Cuarto',
+    desc:'El caos vuelve cada semana. El héroe también.',
+    diff:2, stat:'str', prio:'high',
+    recur:'weekend', recurDesc:'fines de semana',
+    stages:[
+      {id:'s1', name:'Recoger ropa del suelo y cama'},
+      {id:'s2', name:'Ordenar escritorio'},
+      {id:'s3', name:'Organizar estanterías y cajones'},
+      {id:'s4', name:'Limpiar superficies y polvo'},
+      {id:'s5', name:'Revisar y tirar lo innecesario'},
+    ]
+  },
+  {
+    id:'bt_salud', icon:'🏥', name:'Revisión de Salud',
+    desc:'El héroe también necesita mantenimiento preventivo.',
+    diff:2, stat:'str', prio:'high',
+    recur:'monthly', recurDesc:'cada mes',
+    stages:[
+      {id:'s1', name:'Pedir cita médico de cabecera'},
+      {id:'s2', name:'Pedir cita dentista'},
+      {id:'s3', name:'Revisión de vista (si toca)'},
+      {id:'s4', name:'Análisis de sangre anuales'},
+    ]
+  },
+  {
+    id:'bt_master', icon:'📚', name:'Máster — Sesión de Estudio',
+    desc:'Cada día sin estudiar es XP perdido. No cedas.',
+    diff:3, stat:'wis', prio:'high',
+    recur:'weekday', recurDesc:'L–V',
+    stages:[
+      {id:'s1', name:'Repasar apuntes de la última clase'},
+      {id:'s2', name:'Leer material nuevo (30min)'},
+      {id:'s3', name:'Hacer ejercicios o actividades'},
+      {id:'s4', name:'Anotar dudas y preguntas'},
+      {id:'s5', name:'Consolidar resumen del día'},
+    ]
+  },
+  {
+    id:'bt_digital', icon:'💻', name:'Organizar el Ordenador',
+    desc:'Caos digital → fortaleza ordenada. XP de productividad.',
+    diff:2, stat:'wis', prio:'med',
+    recur:'monthly', recurDesc:'cada mes',
+    stages:[
+      {id:'s1', name:'Escritorio — borrar lo innecesario'},
+      {id:'s2', name:'Descargas — clasificar o borrar todo'},
+      {id:'s3', name:'Organizar carpetas de proyectos'},
+      {id:'s4', name:'Limpiar bandeja de entrada (Inbox Zero)'},
+      {id:'s5', name:'Actualizar apps y sistema'},
+    ]
+  },
+  {
+    id:'bt_finanzas', icon:'📊', name:'Revisar Finanzas',
+    desc:'Controla el tesoro antes de que te controle a ti.',
+    diff:3, stat:'wis', prio:'high',
+    recur:'monthly', recurDesc:'cada mes',
+    stages:[
+      {id:'s1', name:'Revisar gastos del último mes'},
+      {id:'s2', name:'Actualizar presupuesto mensual'},
+      {id:'s3', name:'Revisar suscripciones activas — cancelar las inútiles'},
+      {id:'s4', name:'Revisar ahorros e inversiones'},
+      {id:'s5', name:'Planificar gastos del próximo mes'},
     ]
   },
   {
@@ -3154,41 +3247,6 @@ const BOSS_TEMPLATES = [
     ]
   },
   {
-    id:'bt_digital', icon:'💻', name:'Organizar el Ordenador',
-    desc:'Caos digital → fortaleza ordenada. XP de productividad.',
-    diff:2, stat:'wis', prio:'med',
-    stages:[
-      {id:'s1', name:'Escritorio — borrar lo innecesario'},
-      {id:'s2', name:'Descargas — clasificar o borrar todo'},
-      {id:'s3', name:'Organizar carpetas de proyectos'},
-      {id:'s4', name:'Limpiar bandeja de entrada (Inbox Zero)'},
-      {id:'s5', name:'Actualizar apps y sistema'},
-    ]
-  },
-  {
-    id:'bt_salud', icon:'🏥', name:'Revisiones de Salud',
-    desc:'El héroe también necesita mantenimiento preventivo.',
-    diff:2, stat:'str', prio:'high',
-    stages:[
-      {id:'s1', name:'Pedir cita médico de cabecera'},
-      {id:'s2', name:'Pedir cita dentista'},
-      {id:'s3', name:'Revisión de vista (si toca)'},
-      {id:'s4', name:'Análisis de sangre anuales'},
-    ]
-  },
-  {
-    id:'bt_finanzas', icon:'📊', name:'Revisar Finanzas',
-    desc:'Controla el tesoro antes de que te controle a ti.',
-    diff:3, stat:'wis', prio:'high',
-    stages:[
-      {id:'s1', name:'Revisar gastos del último mes'},
-      {id:'s2', name:'Actualizar presupuesto mensual'},
-      {id:'s3', name:'Revisar suscripciones activas — cancelar las inútiles'},
-      {id:'s4', name:'Revisar ahorros e inversiones'},
-      {id:'s5', name:'Planificar gastos del próximo mes'},
-    ]
-  },
-  {
     id:'bt_mudanza', icon:'📦', name:'Mudanza / Gran Reorganización',
     desc:'El boss de los bosses. Solo para los más valientes.',
     diff:5, stat:'str', prio:'high',
@@ -3202,7 +3260,7 @@ const BOSS_TEMPLATES = [
     ]
   },
   {
-    id:'bt_estudio', icon:'📚', name:'Preparar Examen / Presentación',
+    id:'bt_estudio', icon:'🎓', name:'Preparar Examen / Presentación',
     desc:'La batalla mental. WIS es tu mayor arma aquí.',
     diff:4, stat:'wis', prio:'high',
     stages:[
@@ -3227,28 +3285,107 @@ const BOSS_TEMPLATES = [
   },
 ];
 
+// ── Recurring boss helpers ──
+function bossRecurPeriodKey(tpl){
+  const now = new Date();
+  const day = now.getDay(); // 0=Sun,6=Sat
+  if(tpl.recur==='weekend'){
+    // Use the Saturday of the current weekend
+    const sat = new Date(now);
+    if(day===0) sat.setDate(now.getDate()-1); // Sunday → prev Saturday
+    else if(day===6) sat.setDate(now.getDate()); // Saturday itself
+    else return null; // weekday, not due
+    return dk(sat);
+  }
+  if(tpl.recur==='weekday'){
+    if(day===0||day===6) return null; // weekend, not due
+    return todayDK(); // due today specifically
+  }
+  if(tpl.recur==='monthly'){
+    return now.getFullYear()+'-'+(now.getMonth()+1);
+  }
+  return null;
+}
+
+function bossRecurIsDue(tpl){
+  if(!tpl.recur) return false;
+  const periodKey = bossRecurPeriodKey(tpl);
+  if(!periodKey) return false;
+  // Check not already active or defeated this period
+  const existing = db.activeBosses.find(b=>
+    b.templateId===tpl.id && b.recurPeriod===periodKey
+  );
+  return !existing;
+}
+
+function autoInvokeRecurBosses(){
+  BOSS_TEMPLATES.filter(t=>t.recur).forEach(tpl=>{
+    if(!bossRecurIsDue(tpl)) return;
+    const periodKey = bossRecurPeriodKey(tpl);
+    if(!periodKey) return;
+    const boss = {
+      id: uid(),
+      templateId: tpl.id,
+      icon: tpl.icon,
+      name: tpl.name,
+      stat: tpl.stat,
+      prio: tpl.prio,
+      startDate: todayDK(),
+      defeatedDate: null,
+      recurPeriod: periodKey,
+      stages: tpl.stages.map(s=>({id:uid(), name:s.name, done:false})),
+    };
+    db.activeBosses.push(boss);
+  });
+  saveDB();
+}
+
 // ── Render boss tab ──
 function renderBossTab(){
   if(!db.activeBosses) db.activeBosses=[];
+  autoInvokeRecurBosses();
 
-  // Active count badge
-  const active = db.activeBosses.filter(b=>!b.defeatedDate);
+  // Custom task bosses (converted via Quests tab 💀 button)
+  const taskBossesActive   = db.tasks.filter(t=> t.type==='boss' && !t.stages?.every(s=>s.done));
+  const taskBossesDefeated = db.tasks.filter(t=> t.type==='boss' && t.stages?.length>0 && t.stages.every(s=>s.done));
+
+  // Active count badge (combine both systems)
+  const active   = db.activeBosses.filter(b=>!b.defeatedDate);
   const defeated = db.activeBosses.filter(b=>!!b.defeatedDate);
-  setTxt('bt-active-count', active.length);
-  setTxt('bt-defeated-count', defeated.length);
+  setTxt('bt-active-count',   active.length + taskBossesActive.length);
+  setTxt('bt-defeated-count', defeated.length + taskBossesDefeated.length);
 
   // Active bosses
   const activeList = document.getElementById('bt-active-list');
   activeList.innerHTML='';
-  if(!active.length){
-    activeList.innerHTML='<div class="bt-empty"><span class="bt-empty-icon">🛡️</span>Sin batallas activas. Invoca un boss para empezar.</div>';
-  } else {
+
+  // Custom task bosses first (created from Quests)
+  if(taskBossesActive.length){
+    const lbl=document.createElement('div');
+    lbl.style.cssText='font-family:"Cinzel",serif;font-size:.38rem;letter-spacing:.18em;color:rgba(180,140,50,.5);text-transform:uppercase;padding:.3rem .1rem .15rem;margin-bottom:.2rem;';
+    lbl.textContent='⚔ Desde Quests';
+    activeList.appendChild(lbl);
+    taskBossesActive.forEach(t=> activeList.appendChild(buildBossCard(t, todayDK())));
+  }
+
+  if(active.length){
+    if(taskBossesActive.length){
+      const lbl=document.createElement('div');
+      lbl.style.cssText='font-family:"Cinzel",serif;font-size:.38rem;letter-spacing:.18em;color:rgba(180,140,50,.5);text-transform:uppercase;padding:.3rem .1rem .15rem;margin-bottom:.2rem;';
+      lbl.textContent='⚔ Del Catálogo';
+      activeList.appendChild(lbl);
+    }
     active.forEach(b=> activeList.appendChild(buildActiveBossCard(b)));
   }
 
-  // Defeated history (collapsed by default)
+  if(!active.length && !taskBossesActive.length){
+    activeList.innerHTML='<div class="bt-empty"><span class="bt-empty-icon">🛡️</span>Sin batallas activas. Invoca un boss para empezar.</div>';
+  }
+
+  // Defeated history
   const histList = document.getElementById('bt-history-list');
   histList.innerHTML='';
+  taskBossesDefeated.forEach(t=> histList.appendChild(buildBossCard(t, todayDK())));
   defeated.slice().reverse().forEach(b=> histList.appendChild(buildActiveBossCard(b, true)));
 
   // Catalog
@@ -3260,9 +3397,13 @@ function renderBossCatalog(){
   grid.innerHTML='';
   BOSS_TEMPLATES.forEach(tpl=>{
     const isActive = db.activeBosses.some(b=>b.templateId===tpl.id && !b.defeatedDate);
+    const isDue = tpl.recur && bossRecurIsDue(tpl);
     const card = document.createElement('div');
-    card.className = 'bt-template' + (isActive ? ' active-tpl' : '');
+    card.className = 'bt-template' + (isActive ? ' active-tpl' : '') + (isDue ? ' recur-due' : '');
     const stars = '★'.repeat(tpl.diff) + '☆'.repeat(5-tpl.diff);
+    const recurBadge = tpl.recur
+      ? `<span class="bt-tpl-recur${isDue?' due':''}">${isDue?'⚠ ':'🔄 '}${tpl.recurDesc}</span>`
+      : '';
     card.innerHTML = `
       <div class="bt-tpl-icon">${tpl.icon}</div>
       <div class="bt-tpl-name">${tpl.name}</div>
@@ -3270,9 +3411,10 @@ function renderBossCatalog(){
       <div class="bt-tpl-meta">
         <span class="bt-tpl-diff">${stars}</span>
         <span class="bt-tpl-stat">${tpl.stat.toUpperCase()}</span>
+        ${recurBadge}
         ${isActive ? '<span class="bt-tpl-active-badge">EN CURSO</span>' : ''}
       </div>
-      <span class="bt-invoke-badge">${isActive ? '⚔️ activo' : '▶ invocar'}</span>
+      <span class="bt-invoke-badge">${isActive ? '⚔️ activo' : isDue ? '⚠ ¡Toca hoy!' : '▶ invocar'}</span>
     `;
     if(!isActive){
       card.addEventListener('click', ()=> invokeBossTemplate(tpl));
@@ -3353,6 +3495,7 @@ function invokeBossTemplate(tpl){
     prio: tpl.prio,
     startDate: todayDK(),
     defeatedDate: null,
+    recurPeriod: tpl.recur ? bossRecurPeriodKey(tpl) : null,
     stages: tpl.stages.map(s=>({id:uid(), name:s.name, done:false})),
   };
   db.activeBosses.push(boss);
@@ -3560,6 +3703,9 @@ function toggleBossStage(taskId, stageId, key){
     ensureLog(key);
     if(!db.log[key].done.includes(taskId)) db.log[key].done.push(taskId);
     saveDB(); renderTasks(); updateHeader();
+    // Refresh boss tab if open
+    const bossTab=document.getElementById('tab-boss');
+    if(bossTab&&bossTab.classList.contains('active')) renderBossTab();
     toast('⚔️ ¡BOSS DERROTADO! +'+bonus+' XP bonus!', 3000);
     setTimeout(checkAchievements, 400);
     // Pulse
@@ -3630,11 +3776,21 @@ document.getElementById('btn-add').addEventListener('click',()=>{
 function updateWaterBanner(){
   const el=document.getElementById('wb-banner'); if(!el) return;
   const last=db.lastWater?new Date(db.lastWater):null;
-  const diff=last?(Date.now()-last.getTime())/60000:999;
+  // Only show if we have a timestamp AND it's been >60min (not on first ever open)
+  const diff=last?(Date.now()-last.getTime())/60000:0;
   if(diff>60) el.classList.add('show'); else el.classList.remove('show');
+
+  // Move banner
+  const mv=document.getElementById('mv-banner'); if(!mv) return;
+  const lastM=db.lastMove?new Date(db.lastMove):null;
+  const diffM=lastM?(Date.now()-lastM.getTime())/60000:0;
+  if(diffM>120) mv.classList.add('show'); else mv.classList.remove('show');
 }
 document.getElementById('wb-done').addEventListener('click',()=>{
   db.lastWater=Date.now(); saveDB(); updateWaterBanner(); toast('💧 ¡Hidratado! +5 XP'); addXP(5,'dex');
+});
+document.getElementById('mv-done').addEventListener('click',()=>{
+  db.lastMove=Date.now(); saveDB(); updateWaterBanner(); toast('🏃 ¡En movimiento! +5 XP'); addXP(5,'str');
 });
 
 // ════════════════════════════════════════════════
@@ -4512,7 +4668,12 @@ function checkMidnight(){
   }
   // Check ALL main quests (including custom) not done or skipped yesterday
   const allYestMQs=allMQsForDate(yest);
-  const missedMQs=allYestMQs.filter(q=>!yDone.includes(q.id)&&!ySkipped.includes(q.id));
+  const missedMQs=allYestMQs.filter(q=>
+    !yDone.includes(q.id) &&
+    !ySkipped.includes(q.id) &&
+    q.recur!=='weekly' &&
+    q.recur!=='monthly'
+  );
   if(missedMQs.length){
     db.dailyMissed=(db.dailyMissed||0)+missedMQs.length;
     const highMissed=missedMQs.filter(m=>m.prio==='high').length;
@@ -5022,6 +5183,34 @@ function scheduleAndroidNotifications(){
     else window.Android.cancelNotification('water');
     if(cfg.notif_move!==false) window.Android.scheduleRepeating('move','🏃 QuestLog','Lleva demasiado tiempo sentado. ¡Muévete!',7200000);
     else window.Android.cancelNotification('move');
+
+    // Recurring boss reminders
+    BOSS_TEMPLATES.filter(t=>t.recur).forEach(tpl=>{
+      const notifId='boss_recur_'+tpl.id;
+      window.Android.cancelNotification(notifId);
+      const now=new Date();
+      let target=null;
+      if(tpl.recur==='weekend'){
+        // Next Saturday at 10am
+        const d=new Date(now); const day=d.getDay();
+        const daysToSat=day===6?7:(6-day);
+        d.setDate(d.getDate()+daysToSat); d.setHours(10,0,0,0);
+        target=d;
+      } else if(tpl.recur==='weekday'){
+        // Tomorrow if weekday, else next Monday at 9am
+        const d=new Date(now); d.setDate(d.getDate()+1); d.setHours(9,0,0,0);
+        if(d.getDay()===6) d.setDate(d.getDate()+2);
+        if(d.getDay()===0) d.setDate(d.getDate()+1);
+        target=d;
+      } else if(tpl.recur==='monthly'){
+        // 1st of next month at 9am
+        const d=new Date(now.getFullYear(), now.getMonth()+1, 1, 9, 0, 0);
+        target=d;
+      }
+      if(target && target.getTime()>Date.now()){
+        try{ window.Android.scheduleOnce(notifId, tpl.icon+' '+tpl.name, '⚔️ Boss recurrente listo · '+tpl.recurDesc, target.getTime()); }catch(e){}
+      }
+    });
   }catch(e){}
 }
 
@@ -5246,8 +5435,23 @@ function igEnsure(){
 
 function igSpentThisMonth(){
   igEnsure();
+  const now=new Date();
+  const thisMonth=now.getFullYear()+'-'+(now.getMonth()+1);
   return db.impulse.spent
-    .filter(e=> !e.resisted)
+    .filter(e=>{
+      if(e.resisted) return false;
+      // Filter by current month using the expense date if available, else include
+      if(e.date){
+        const d=new Date(e.date);
+        return d.getFullYear()+'-'+(d.getMonth()+1)===thisMonth;
+      }
+      // Legacy entries without date: check by timestamp if available
+      if(e.ts){
+        const d=new Date(e.ts);
+        return d.getFullYear()+'-'+(d.getMonth()+1)===thisMonth;
+      }
+      return true; // no date info, include to avoid hiding
+    })
     .reduce((s,e)=> s + (parseFloat(e.amount)||0), 0);
 }
 
@@ -6286,8 +6490,8 @@ function init(){
   renderTasks();
   refreshDebuffBar();
   updateXPFreezeBar();
-  setTimeout(()=>{ checkAchievements(); renderAchievements(); renderRewards(); renderRests(); scheduleAndroidNotifications(); scheduleRenewalAlerts(); scheduleAllEventNotifs(); scheduleQuestNotifs(); initBankBanner(); bdRender(); }, 600);
-  setInterval(()=>{ checkMidnight(); updateWaterBanner(); updateXPFreezeBar(); }, 60000);
+  setTimeout(()=>{ checkAchievements(); renderAchievements(); renderRewards(); renderRests(); scheduleAndroidNotifications(); scheduleRenewalAlerts(); scheduleAllEventNotifs(); scheduleQuestNotifs(); initBankBanner(); bdRender(); checkSleepWake(); }, 600);
+  setInterval(()=>{ checkMidnight(); updateWaterBanner(); updateXPFreezeBar(); checkSleepWake(); }, 60000);
 }
 
 // ════════════════════════════════════════════════
@@ -6550,6 +6754,44 @@ function hmsPickAndLaunch(){
 }
 
 document.getElementById('hms-btn').addEventListener('click', hmsPickAndLaunch);
+
+// ════════════════════════════════════════════════
+//  SLEEP MODE
+// ════════════════════════════════════════════════
+function sleepModeActive(){
+  if(!db.sleepMode) return false;
+  return db.sleepMode.until && Date.now() < db.sleepMode.until;
+}
+function updateSleepBtn(){
+  const btn=document.getElementById('sleep-btn'); if(!btn) return;
+  const active=sleepModeActive();
+  btn.className='sleep-btn'+(active?' active':'');
+  btn.textContent=active?'☀️ Despertar':'🌙 Dormir';
+}
+document.getElementById('sleep-btn').addEventListener('click',()=>{
+  if(sleepModeActive()){
+    // Wake up: cancel sleep, reschedule water+move
+    db.sleepMode={until:0}; saveDB();
+    db.lastWater=Date.now(); db.lastMove=Date.now(); saveDB();
+    scheduleAndroidNotifications();
+    updateSleepBtn(); toast('☀️ ¡Buenos días! Notificaciones reactivadas');
+  } else {
+    // Sleep: cancel water+move notifs until 8am tomorrow
+    const tomorrow=new Date(); tomorrow.setDate(tomorrow.getDate()+1); tomorrow.setHours(8,0,0,0);
+    db.sleepMode={until:tomorrow.getTime()}; saveDB();
+    if(window.Android){ try{ window.Android.cancelNotification('water'); window.Android.cancelNotification('move'); }catch(e){} }
+    updateSleepBtn(); toast('🌙 Modo sueño activado — notifs a las 8:00am', 3000);
+    // Schedule wake-up reschedule via morning notif (already at 8am)
+  }
+});
+// On init, check if sleep ended and reschedule if needed
+function checkSleepWake(){
+  if(db.sleepMode?.until && Date.now()>=db.sleepMode.until){
+    db.sleepMode.until=0; saveDB();
+    scheduleAndroidNotifications(); // reactivate water+move
+  }
+  updateSleepBtn();
+}
 
 // ════════════════════════════════════════════════
 //  TIME BLINDNESS — DAY RING
