@@ -746,6 +746,43 @@ input[type=range].dev-range::-webkit-slider-runnable-track{background:linear-gra
 /* ══════════════ BRAIN DUMP FAB ══════════════ */
 .bd-fab{position:fixed;bottom:8.2rem;right:.7rem;width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,#2a1a4a,#180e30);border:2px solid rgba(160,120,255,.45);color:#c0a0ff;font-size:1.1rem;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:200;box-shadow:0 3px 14px rgba(40,0,80,.4);transition:.2s;}
 .bd-fab:active{transform:scale(.93);}
+
+/* ── Bug Tracker FAB ── */
+.bug-fab{position:fixed;bottom:11.6rem;right:.7rem;width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,#3a0a0a,#220505);border:2px solid rgba(220,60,60,.4);color:#ff8080;font-size:1rem;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:200;box-shadow:0 3px 14px rgba(80,0,0,.4);transition:.2s;}
+.bug-fab:active{transform:scale(.93);}
+.bug-fab-badge{position:absolute;top:-3px;right:-3px;background:#cc2020;color:#fff;font-size:.38rem;font-family:'Cinzel',serif;min-width:14px;height:14px;border-radius:7px;display:flex;align-items:center;justify-content:center;padding:0 3px;display:none;}
+
+/* ── Bug Tracker Modal ── */
+.bug-modal-bg{position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:1200;display:none;align-items:flex-end;}
+.bug-modal-bg.show{display:flex;}
+.bug-modal{background:linear-gradient(160deg,#1a0808,#100505);border-top:2px solid rgba(220,60,60,.4);border-left:1px solid rgba(220,60,60,.2);border-right:1px solid rgba(220,60,60,.2);width:100%;max-height:88vh;overflow-y:auto;padding:1rem .9rem 2rem;display:flex;flex-direction:column;gap:.6rem;}
+.bug-modal-title{font-family:'Cinzel Decorative',serif;font-size:.7rem;color:#ff6060;letter-spacing:.06em;}
+.bug-modal-sub{font-size:.44rem;color:rgba(200,120,120,.6);font-style:italic;margin-top:-.3rem;}
+.bug-field-lbl{font-family:'Cinzel',serif;font-size:.4rem;letter-spacing:.12em;color:rgba(220,100,100,.7);text-transform:uppercase;margin-bottom:.2rem;}
+.bug-input{width:100%;background:rgba(40,10,10,.6);border:1px solid rgba(180,60,60,.3);color:#f0c0c0;font-size:.52rem;padding:.35rem .5rem;font-family:inherit;resize:none;box-sizing:border-box;}
+.bug-input:focus{outline:none;border-color:rgba(220,80,80,.6);}
+.bug-row{display:grid;grid-template-columns:1fr 1fr;gap:.5rem;}
+.bug-select{width:100%;background:rgba(40,10,10,.6);border:1px solid rgba(180,60,60,.3);color:#f0c0c0;font-size:.52rem;padding:.35rem .4rem;font-family:inherit;}
+.bug-submit{width:100%;background:linear-gradient(135deg,#8a1010,#6a0808);border:1px solid rgba(220,60,60,.5);color:#ffb0b0;font-family:'Cinzel',serif;font-size:.54rem;letter-spacing:.08em;padding:.45rem;cursor:pointer;margin-top:.2rem;}
+.bug-submit:active{opacity:.8;}
+.bug-list-wrap{margin-top:.4rem;display:flex;flex-direction:column;gap:.4rem;}
+.bug-list-hdr{font-family:'Cinzel',serif;font-size:.42rem;letter-spacing:.14em;color:rgba(220,100,100,.6);text-transform:uppercase;padding-bottom:.25rem;border-bottom:1px solid rgba(180,60,60,.2);}
+.bug-item{background:rgba(30,8,8,.6);border:1px solid rgba(180,60,60,.2);padding:.45rem .5rem;position:relative;}
+.bug-item.resolved{opacity:.45;border-style:dashed;}
+.bug-item-top{display:flex;align-items:flex-start;gap:.4rem;margin-bottom:.2rem;}
+.bug-item-urgency{font-size:.38rem;padding:.06rem .25rem;border-radius:2px;flex-shrink:0;font-family:'Cinzel',serif;letter-spacing:.06em;}
+.bug-item-urgency.critica{background:rgba(200,20,20,.3);color:#ff6060;border:1px solid rgba(200,20,20,.4);}
+.bug-item-urgency.alta{background:rgba(200,100,20,.25);color:#ffaa60;border:1px solid rgba(200,100,20,.3);}
+.bug-item-urgency.media{background:rgba(180,160,20,.2);color:#ffe060;border:1px solid rgba(180,160,20,.3);}
+.bug-item-urgency.baja{background:rgba(60,60,60,.3);color:#aaa;border:1px solid rgba(100,100,100,.3);}
+.bug-item-where{font-family:'Cinzel',serif;font-size:.44rem;color:#f0a0a0;flex:1;}
+.bug-item-date{font-size:.36rem;color:rgba(180,100,100,.5);flex-shrink:0;}
+.bug-item-desc{font-size:.46rem;color:rgba(220,160,160,.8);line-height:1.5;margin-bottom:.2rem;}
+.bug-item-effect{font-size:.42rem;color:rgba(180,120,120,.6);font-style:italic;}
+.bug-item-actions{display:flex;gap:.4rem;margin-top:.35rem;}
+.bug-item-btn{background:none;border:1px solid rgba(180,80,80,.3);color:rgba(200,120,120,.7);font-family:'Cinzel',serif;font-size:.38rem;padding:.1rem .35rem;cursor:pointer;letter-spacing:.06em;}
+.bug-item-btn.resolve{border-color:rgba(60,160,60,.35);color:rgba(100,200,100,.7);}
+.bug-item-btn.del{border-color:rgba(160,40,40,.3);color:rgba(200,80,80,.6);}
 /* Badge showing pending dump count */
 .bd-badge{position:absolute;top:-4px;right:-4px;background:#c8306a;border:1.5px solid #f0e4c4;border-radius:50%;width:16px;height:16px;font-family:'Cinzel',serif;font-size:.38rem;color:#fff;display:none;align-items:center;justify-content:center;line-height:1;}
 .bd-badge.show{display:flex;}
@@ -1303,6 +1340,56 @@ input[type=number].tr-inp::placeholder{-webkit-text-fill-color:rgba(180,140,50,.
 
 <!-- IMPULSE GUARD FAB -->
 <button class="ig-fab" id="ig-fab" title="Impulse Guard — ¿Vas a comprar algo?">💸</button>
+
+<!-- BUG TRACKER FAB -->
+<button class="bug-fab" id="bug-fab" title="Reportar Enemy Bug 🐛">
+  🐛
+  <div class="bug-fab-badge" id="bug-fab-badge"></div>
+</button>
+
+<!-- BUG TRACKER MODAL -->
+<div class="bug-modal-bg" id="bug-modal-bg">
+  <div class="bug-modal">
+    <div class="bug-modal-title">🐛 Enemy Bug Tracker</div>
+    <div class="bug-modal-sub">Registra el enemigo antes de que escape.</div>
+
+    <div>
+      <div class="bug-field-lbl">📍 ¿Dónde está el bug? (tab / función)</div>
+      <input class="bug-input" id="bug-where" placeholder="ej: Treasury, Boss tab, toggleTask..." type="text">
+    </div>
+    <div>
+      <div class="bug-field-lbl">📝 Descripción del bug</div>
+      <textarea class="bug-input" id="bug-desc" rows="2" placeholder="¿Qué pasa exactamente?"></textarea>
+    </div>
+    <div>
+      <div class="bug-field-lbl">💥 Efecto en la app</div>
+      <textarea class="bug-input" id="bug-effect" rows="2" placeholder="¿Qué se rompe o qué comportamiento inesperado causa?"></textarea>
+    </div>
+    <div class="bug-row">
+      <div>
+        <div class="bug-field-lbl">🚨 Urgencia</div>
+        <select class="bug-select" id="bug-urgency">
+          <option value="critica">🔴 Crítica</option>
+          <option value="alta">🟠 Alta</option>
+          <option value="media" selected>🟡 Media</option>
+          <option value="baja">⚪ Baja</option>
+        </select>
+      </div>
+      <div>
+        <div class="bug-field-lbl">🔄 Estado</div>
+        <select class="bug-select" id="bug-status">
+          <option value="encontrado">🔍 Encontrado</option>
+          <option value="en progreso">⚒ En progreso</option>
+          <option value="resuelto">✅ Resuelto</option>
+        </select>
+      </div>
+    </div>
+    <button class="bug-submit" id="bug-submit">⚔️ Registrar Enemy Bug</button>
+
+    <div class="bug-list-hdr" id="bug-list-hdr" style="display:none">— Bugs registrados —</div>
+    <div class="bug-list-wrap" id="bug-list"></div>
+  </div>
+</div>
 
 <!-- BRAIN DUMP FAB -->
 <button class="bd-fab" id="bd-fab" title="Descarga Mental — captura el pensamiento">
@@ -6833,6 +6920,69 @@ function updateDayRing(){
 }
 updateDayRing();
 setInterval(updateDayRing, 60000);
+
+// ════════════════════════════════════════════════
+//  BUG TRACKER — ENEMY BUG
+// ════════════════════════════════════════════════
+const BUG_KEY = 'ql_bugs';
+function bugsLoad(){ try{ return JSON.parse(localStorage.getItem(BUG_KEY)||'[]'); }catch(e){ return []; } }
+function bugsSave(bugs){ localStorage.setItem(BUG_KEY, JSON.stringify(bugs)); }
+
+function bugRender(){
+  const bugs = bugsLoad();
+  const list = document.getElementById('bug-list');
+  const hdr  = document.getElementById('bug-list-hdr');
+  const badge = document.getElementById('bug-fab-badge');
+  list.innerHTML = '';
+  const open = bugs.filter(b=>b.status!=='resuelto');
+  if(badge){ if(open.length){ badge.textContent=open.length; badge.style.display='flex'; } else badge.style.display='none'; }
+  if(!bugs.length){ hdr.style.display='none'; return; }
+  hdr.style.display='block';
+  bugs.slice().reverse().forEach(b=>{
+    const el = document.createElement('div');
+    el.className = 'bug-item' + (b.status==='resuelto'?' resolved':'');
+    el.innerHTML = `
+      <div class="bug-item-top">
+        <span class="bug-item-urgency ${b.urgency}">${{critica:'🔴 CRÍTICA',alta:'🟠 ALTA',media:'🟡 MEDIA',baja:'⚪ BAJA'}[b.urgency]||b.urgency}</span>
+        <span class="bug-item-where">${bugEsc(b.where)}</span>
+        <span class="bug-item-date">${b.date} · ${b.status}</span>
+      </div>
+      <div class="bug-item-desc">${bugEsc(b.desc)}</div>
+      ${b.effect?`<div class="bug-item-effect">💥 ${bugEsc(b.effect)}</div>`:''}
+      <div class="bug-item-actions">
+        ${b.status!=='resuelto'?`<button class="bug-item-btn resolve" data-bugid="${b.id}">✅ Resolver</button>`:`<button class="bug-item-btn" data-bugreopen="${b.id}">↩ Reabrir</button>`}
+        <button class="bug-item-btn" data-bugstatus="${b.id}">⚒ En progreso</button>
+        <button class="bug-item-btn del" data-bugdel="${b.id}">✕</button>
+      </div>`;
+    const resolveBtn = el.querySelector('[data-bugid]');
+    if(resolveBtn) resolveBtn.addEventListener('click',()=>bugSetStatus(b.id,'resuelto'));
+    const reopenBtn = el.querySelector('[data-bugreopen]');
+    if(reopenBtn) reopenBtn.addEventListener('click',()=>bugSetStatus(b.id,'encontrado'));
+    el.querySelector('[data-bugstatus]').addEventListener('click',()=>bugSetStatus(b.id,'en progreso'));
+    el.querySelector('[data-bugdel]').addEventListener('click',()=>{
+      if(confirm('¿Borrar este bug?')){ bugsSave(bugsLoad().filter(x=>x.id!==b.id)); bugRender(); }
+    });
+    list.appendChild(el);
+  });
+}
+function bugEsc(s){ const d=document.createElement('div'); d.textContent=s||''; return d.innerHTML; }
+function bugSetStatus(id,status){ const bugs=bugsLoad(); const b=bugs.find(x=>x.id===id); if(b) b.status=status; bugsSave(bugs); bugRender(); }
+
+document.getElementById('bug-fab').addEventListener('click',()=>{ bugRender(); document.getElementById('bug-modal-bg').classList.add('show'); });
+document.getElementById('bug-modal-bg').addEventListener('click',e=>{ if(e.target===document.getElementById('bug-modal-bg')) document.getElementById('bug-modal-bg').classList.remove('show'); });
+document.getElementById('bug-submit').addEventListener('click',()=>{
+  const where=document.getElementById('bug-where').value.trim();
+  const desc=document.getElementById('bug-desc').value.trim();
+  const effect=document.getElementById('bug-effect').value.trim();
+  if(!where||!desc){ toast('⚠ Rellena al menos dónde y descripción'); return; }
+  const bugs=bugsLoad();
+  bugs.push({id:Date.now().toString(36),where,desc,effect,urgency:document.getElementById('bug-urgency').value,status:document.getElementById('bug-status').value,date:todayDK()});
+  bugsSave(bugs); bugRender();
+  ['bug-where','bug-desc','bug-effect'].forEach(id=>document.getElementById(id).value='');
+  document.getElementById('bug-urgency').value='media';
+  document.getElementById('bug-status').value='encontrado';
+  toast('🐛 Bug registrado — ¡a por él!');
+});
 
 init();
 </script>
