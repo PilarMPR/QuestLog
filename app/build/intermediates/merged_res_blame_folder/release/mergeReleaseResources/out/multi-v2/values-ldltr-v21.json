@@ -1,0 +1,19 @@
+{
+    "logs": [
+        {
+            "outputFile": "com.questlog.app-mergeReleaseResources-29:/values-ldltr-v21/values-ldltr-v21.xml",
+            "map": [
+                {
+                    "source": "C:\\Users\\P\\.gradle\\caches\\9.3.1\\transforms\\f307133b64f982025ed855d2f63521bd\\workspace\\transformed\\appcompat-1.6.1\\res\\values-ldltr-v21\\values-ldltr-v21.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "112",
+                        "endOffsets": "163"
+                    }
+                }
+            ]
+        }
+    ]
+}

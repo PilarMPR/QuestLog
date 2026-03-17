@@ -1,0 +1,8 @@
+com.questlog.app-pngs-0 D:\02_Profesional\01_Projectos\Apps\Daily Quests\DnD productivity app\QuestLog_v9\QuestLog\app\build\generated\res\pngs\release
+com.questlog.app-resValues-1 D:\02_Profesional\01_Projectos\Apps\Daily Quests\DnD productivity app\QuestLog_v9\QuestLog\app\build\generated\res\resValues\release
+com.questlog.app-updated_navigation_xml-2 D:\02_Profesional\01_Projectos\Apps\Daily Quests\DnD productivity app\QuestLog_v9\QuestLog\app\build\generated\updated_navigation_xml\release
+com.questlog.app-packageReleaseResources-3 D:\02_Profesional\01_Projectos\Apps\Daily Quests\DnD productivity app\QuestLog_v9\QuestLog\app\build\intermediates\incremental\release\packageReleaseResources\merged.dir
+com.questlog.app-packageReleaseResources-4 D:\02_Profesional\01_Projectos\Apps\Daily Quests\DnD productivity app\QuestLog_v9\QuestLog\app\build\intermediates\incremental\release\packageReleaseResources\stripped.dir
+com.questlog.app-release-5 D:\02_Profesional\01_Projectos\Apps\Daily Quests\DnD productivity app\QuestLog_v9\QuestLog\app\build\intermediates\merged_res\release\mergeReleaseResources
+com.questlog.app-main-6 D:\02_Profesional\01_Projectos\Apps\Daily Quests\DnD productivity app\QuestLog_v9\QuestLog\app\src\main\res
+com.questlog.app-release-7 D:\02_Profesional\01_Projectos\Apps\Daily Quests\DnD productivity app\QuestLog_v9\QuestLog\app\src\release\res

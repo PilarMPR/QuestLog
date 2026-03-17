@@ -1,0 +1,35 @@
+com.questlog.app-lifecycle-livedata-core-2.6.1-0 C:\Users\P\.gradle\caches\8.13\transforms\033ccc24de36bdddc17e2d75dcdbcf1f\transformed\lifecycle-livedata-core-2.6.1\res
+com.questlog.app-lifecycle-livedata-2.6.1-1 C:\Users\P\.gradle\caches\8.13\transforms\0c666954300071cf1fc7da2f9fd445f6\transformed\lifecycle-livedata-2.6.1\res
+com.questlog.app-jetified-core-ktx-1.12.0-2 C:\Users\P\.gradle\caches\8.13\transforms\1afe41212c66352bad330330793aebd4\transformed\jetified-core-ktx-1.12.0\res
+com.questlog.app-drawerlayout-1.1.1-3 C:\Users\P\.gradle\caches\8.13\transforms\2072ac0603d51380d9500f2a7afde4b6\transformed\drawerlayout-1.1.1\res
+com.questlog.app-material-1.11.0-4 C:\Users\P\.gradle\caches\8.13\transforms\2ba15e1789d5738aa3591747388fb086\transformed\material-1.11.0\res
+com.questlog.app-jetified-profileinstaller-1.3.0-5 C:\Users\P\.gradle\caches\8.13\transforms\2d1f26c2b42532ef085852285fd5b926\transformed\jetified-profileinstaller-1.3.0\res
+com.questlog.app-jetified-activity-1.8.0-6 C:\Users\P\.gradle\caches\8.13\transforms\2f6c4c417c84a3f9e1f031401f6797f7\transformed\jetified-activity-1.8.0\res
+com.questlog.app-jetified-emoji2-1.2.0-7 C:\Users\P\.gradle\caches\8.13\transforms\30d87ef16e7fc46a028848470090422c\transformed\jetified-emoji2-1.2.0\res
+com.questlog.app-jetified-startup-runtime-1.1.1-8 C:\Users\P\.gradle\caches\8.13\transforms\3ff255d99ec404d7bf32e05bbd2da197\transformed\jetified-startup-runtime-1.1.1\res
+com.questlog.app-cardview-1.0.0-9 C:\Users\P\.gradle\caches\8.13\transforms\4cfbd63c310fd4f82e2682ba685d86e0\transformed\cardview-1.0.0\res
+com.questlog.app-fragment-1.3.6-10 C:\Users\P\.gradle\caches\8.13\transforms\58d97f6e2a194420a46c05982e1df9cd\transformed\fragment-1.3.6\res
+com.questlog.app-recyclerview-1.1.0-11 C:\Users\P\.gradle\caches\8.13\transforms\5b38cdf6638aaf5f007668a932ec2801\transformed\recyclerview-1.1.0\res
+com.questlog.app-jetified-lifecycle-viewmodel-savedstate-2.6.1-12 C:\Users\P\.gradle\caches\8.13\transforms\617c69652b1f556d4046f01f225b8d95\transformed\jetified-lifecycle-viewmodel-savedstate-2.6.1\res
+com.questlog.app-jetified-annotation-experimental-1.3.0-13 C:\Users\P\.gradle\caches\8.13\transforms\7f0b9680aee2e07d2368d6ff98286327\transformed\jetified-annotation-experimental-1.3.0\res
+com.questlog.app-jetified-emoji2-views-helper-1.2.0-14 C:\Users\P\.gradle\caches\8.13\transforms\805c45838d2411bf37a199916a350f14\transformed\jetified-emoji2-views-helper-1.2.0\res
+com.questlog.app-lifecycle-viewmodel-2.6.1-15 C:\Users\P\.gradle\caches\8.13\transforms\84a36b4ce6eb3bb2984b6cb4a69adfba\transformed\lifecycle-viewmodel-2.6.1\res
+com.questlog.app-appcompat-1.6.1-16 C:\Users\P\.gradle\caches\8.13\transforms\878905728e32d0cb49c28b5414738288\transformed\appcompat-1.6.1\res
+com.questlog.app-jetified-savedstate-1.2.1-17 C:\Users\P\.gradle\caches\8.13\transforms\898b75b09b1092b18327caa83442ec76\transformed\jetified-savedstate-1.2.1\res
+com.questlog.app-lifecycle-runtime-2.6.1-18 C:\Users\P\.gradle\caches\8.13\transforms\a4e0f29c5c42c6efac1cef7fc405c4f6\transformed\lifecycle-runtime-2.6.1\res
+com.questlog.app-constraintlayout-2.0.1-19 C:\Users\P\.gradle\caches\8.13\transforms\a527709a1d6d291b13fc0b9de3b5ae9b\transformed\constraintlayout-2.0.1\res
+com.questlog.app-coordinatorlayout-1.1.0-20 C:\Users\P\.gradle\caches\8.13\transforms\ac7d1ca8aac2ff22cc377e64e7779bee\transformed\coordinatorlayout-1.1.0\res
+com.questlog.app-jetified-viewpager2-1.0.0-21 C:\Users\P\.gradle\caches\8.13\transforms\ba357e07bb4583dadbebcf54d9fdcb37\transformed\jetified-viewpager2-1.0.0\res
+com.questlog.app-core-runtime-2.2.0-22 C:\Users\P\.gradle\caches\8.13\transforms\d624b5fabcf8c2a738c4bba417fcf5f0\transformed\core-runtime-2.2.0\res
+com.questlog.app-transition-1.2.0-23 C:\Users\P\.gradle\caches\8.13\transforms\ddc0c63dc0801a3ffe5eb07669e0f628\transformed\transition-1.2.0\res
+com.questlog.app-core-1.12.0-24 C:\Users\P\.gradle\caches\8.13\transforms\e3d1d7163dc6a6a2d02133bed2965330\transformed\core-1.12.0\res
+com.questlog.app-jetified-lifecycle-process-2.6.1-25 C:\Users\P\.gradle\caches\8.13\transforms\f61ac6f2ad285d44e99c4f64cc7bad63\transformed\jetified-lifecycle-process-2.6.1\res
+com.questlog.app-jetified-appcompat-resources-1.6.1-26 C:\Users\P\.gradle\caches\8.13\transforms\fa76542002ce539279fff8cbc16ba55c\transformed\jetified-appcompat-resources-1.6.1\res
+com.questlog.app-pngs-27 D:\02_Profesional\01_Projectos\Apps\Daily Quests\DnD productivity app\QuestLog_v8\QuestLog\app\build\generated\res\pngs\release
+com.questlog.app-resValues-28 D:\02_Profesional\01_Projectos\Apps\Daily Quests\DnD productivity app\QuestLog_v8\QuestLog\app\build\generated\res\resValues\release
+com.questlog.app-updated_navigation_xml-29 D:\02_Profesional\01_Projectos\Apps\Daily Quests\DnD productivity app\QuestLog_v8\QuestLog\app\build\generated\updated_navigation_xml\release
+com.questlog.app-packageReleaseResources-30 D:\02_Profesional\01_Projectos\Apps\Daily Quests\DnD productivity app\QuestLog_v8\QuestLog\app\build\intermediates\incremental\release\packageReleaseResources\merged.dir
+com.questlog.app-packageReleaseResources-31 D:\02_Profesional\01_Projectos\Apps\Daily Quests\DnD productivity app\QuestLog_v8\QuestLog\app\build\intermediates\incremental\release\packageReleaseResources\stripped.dir
+com.questlog.app-release-32 D:\02_Profesional\01_Projectos\Apps\Daily Quests\DnD productivity app\QuestLog_v8\QuestLog\app\build\intermediates\merged_res\release\mergeReleaseResources
+com.questlog.app-main-33 D:\02_Profesional\01_Projectos\Apps\Daily Quests\DnD productivity app\QuestLog_v8\QuestLog\app\src\main\res
+com.questlog.app-release-34 D:\02_Profesional\01_Projectos\Apps\Daily Quests\DnD productivity app\QuestLog_v8\QuestLog\app\src\release\res
