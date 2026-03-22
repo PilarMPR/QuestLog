@@ -1,2 +1,2 @@
 #- File Locator -
-listingFile=../../../../../../../../QuestLog_v8/QuestLog/app/release/output-metadata.json
+listingFile=../../../../../../../../Apps/Daily Quests/DnD productivity app/QuestLog_v8/QuestLog/app/release/output-metadata.json

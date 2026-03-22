@@ -1085,8 +1085,7 @@ input[type=range].dev-range::-webkit-slider-runnable-track{background:linear-gra
 .mq-missed{font-family:'Cinzel',serif;font-size:.42rem;color:var(--crit);padding:.03rem .2rem;border:1px solid rgba(192,57,43,.35);background:rgba(192,57,43,.07);}
 .mq-add-btn{background:none;border:1px solid var(--parch-border);color:var(--gold-deep);font-family:'Cinzel',serif;font-size:.58rem;width:20px;height:20px;display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;line-height:1;}
 /* MQ inline add form */
-.mq-add-form{display:none;padding:.4rem .8rem;gap:.3rem;border-bottom:1px solid var(--parch-border);background:rgba(0,0,0,.2);}
-.mq-add-form.open{display:flex;align-items:center;flex-wrap:wrap;}
+.mq-add-form{display:flex;align-items:center;flex-wrap:wrap;padding:.4rem .8rem;gap:.3rem;border-bottom:1px solid var(--parch-border);background:rgba(0,0,0,.15);}
 .mq-add-form input{flex:1;min-width:110px;font-size:.58rem;}
 .mq-add-form select.mqa-recur-sel{width:90px;}
 .mqa-day-wrap{display:none;width:100%;margin-top:.25rem;}
@@ -1507,34 +1506,6 @@ input[type=number].tr-inp::placeholder{-webkit-text-fill-color:rgba(180,140,50,.
       </select>
     </div>
     <button class="mqa-save" id="mqa-save">Añadir</button>
-  </div>
-  <button class="add-toggle" id="add-toggle">▸ Nueva quest</button>
-  <div class="add-wrap" id="add-wrap">
-    <div class="mb4"><div class="field-lbl">Nombre de la quest</div><input type="text" id="f-name" placeholder="¿Qué tienes que hacer hoy?" maxlength="80"></div>
-    <div class="g2">
-      <div><div class="field-lbl">Prioridad</div>
-        <select id="f-prio"><option value="high">🔴 Alta</option><option value="med" selected>🟡 Media</option><option value="low">🔵 Baja</option></select>
-      </div>
-      <div><div class="field-lbl">¿Se repite?</div>
-        <select id="f-recur"><option value="none">No</option><option value="daily">Cada día</option><option value="weekday">L–V</option><option value="weekend">Finde</option></select>
-      </div>
-    </div>
-    <div class="g2">
-      <div><div class="field-lbl">Fecha límite (opcional)</div><input type="date" id="f-deadline" placeholder=""></div>
-      <div><div class="field-lbl">Nota</div><input type="text" id="f-note" placeholder="Opcional..." maxlength="100"></div>
-    </div>
-    <!-- BOSS MODE TOGGLE -->
-    <div class="boss-toggle" id="boss-toggle">
-      <div class="boss-toggle-icon">💀</div>
-      <div><div class="boss-toggle-lbl">Modo Boss Fight</div><div class="boss-toggle-sub">Divide en fases con HP. XP al derrotar.</div></div>
-      <div class="boss-toggle-sw" id="boss-toggle-sw">OFF</div>
-    </div>
-    <div class="boss-form" id="boss-form">
-      <div class="boss-form-title">💀 Fases del Boss</div>
-      <div class="boss-stage-list" id="boss-stage-list"></div>
-      <button class="boss-add-stage-btn" id="boss-add-stage-btn">＋ Añadir fase</button>
-    </div>
-    <button class="btn-prim" id="btn-add">＋ Añadir Quest</button>
   </div>
   <!-- BRAIN DUMP INBOX -->
   <div class="bd-inbox" id="bd-inbox">
@@ -2843,12 +2814,8 @@ function renderMQSection(wrap, tasks, done, key){
     <div class="mq-sec-lbl">Misiones Principales</div>
     <div class="mq-prog${doneCount===total&&total>0?' complete':''}" id="mq-prog">${doneCount}/${total}</div>
     ${missed>0?`<div class="mq-missed">💀 ×${missed}</div>`:''}
-    <button class="mq-add-btn" id="mq-add-toggle" title="Añadir misión principal">＋</button>
   `;
   wrap.appendChild(hdr);
-  hdr.querySelector('#mq-add-toggle').addEventListener('click',()=>{
-    document.getElementById('mq-add-form').classList.toggle('open');
-  });
   tasks.forEach(t=>{
     const isDone=done.includes(t.id);
     if(t.type==='boss'){
@@ -3729,25 +3696,11 @@ document.getElementById('bt-history-hdr').addEventListener('click',()=>{
 // ════════════════════════════════════════════════
 let _bossMode = false;
 
-// ── Boss toggle in add form ──
-document.getElementById('boss-toggle').addEventListener('click', ()=>{
-  _bossMode = !_bossMode;
-  document.getElementById('boss-toggle-sw').textContent = _bossMode ? 'ON' : 'OFF';
-  document.getElementById('boss-toggle-sw').style.color = _bossMode ? 'var(--crit)' : 'var(--ink-faded)';
-  document.getElementById('boss-form').classList.toggle('open', _bossMode);
-  if(_bossMode && document.getElementById('boss-stage-list').children.length === 0){
-    addBossStageInput('Fase 1');
-    addBossStageInput('Fase 2');
-  }
-});
-
-document.getElementById('boss-add-stage-btn').addEventListener('click', ()=>{
-  const n = document.getElementById('boss-stage-list').children.length + 1;
-  addBossStageInput('Fase ' + n);
-});
+// ── Boss toggle in add form (removed from UI — bosses created via 💀 button on task cards) ──
 
 function addBossStageInput(placeholder=''){
   const list = document.getElementById('boss-stage-list');
+  if(!list) return;
   const row = document.createElement('div'); row.className = 'boss-stage-inp-row';
   row.innerHTML = `<input class="boss-stage-inp" placeholder="${placeholder}" maxlength="80"><button class="boss-stage-rm" title="Quitar">✕</button>`;
   row.querySelector('.boss-stage-rm').addEventListener('click', ()=> row.remove());
@@ -3763,10 +3716,12 @@ function getBossStages(){
 
 function resetBossForm(){
   _bossMode = false;
-  document.getElementById('boss-toggle-sw').textContent = 'OFF';
-  document.getElementById('boss-toggle-sw').style.color = 'var(--ink-faded)';
-  document.getElementById('boss-form').classList.remove('open');
-  document.getElementById('boss-stage-list').innerHTML = '';
+  const sw = document.getElementById('boss-toggle-sw');
+  const form = document.getElementById('boss-form');
+  const list = document.getElementById('boss-stage-list');
+  if(sw){ sw.textContent='OFF'; sw.style.color='var(--ink-faded)'; }
+  if(form) form.classList.remove('open');
+  if(list) list.innerHTML='';
 }
 
 // ── Build boss card ──
@@ -3859,53 +3814,7 @@ function toggleBossStage(taskId, stageId, key){
 // ════════════════════════════════════════════════
 //  ADD QUEST
 // ════════════════════════════════════════════════
-document.getElementById('add-toggle').addEventListener('click',function(){
-  this.classList.toggle('open');
-  document.getElementById('add-wrap').classList.toggle('open');
-  this.textContent=this.classList.contains('open')?'▾ Nueva quest':'▸ Nueva quest';
-  if(!this.classList.contains('open')) resetBossForm();
-});
-document.getElementById('btn-add').addEventListener('click',()=>{
-  const name=document.getElementById('f-name').value.trim();
-  if(!name) return toast('Escribe un nombre para la quest');
-  const deadline=document.getElementById('f-deadline').value||null;
-  const recur=document.getElementById('f-recur').value;
-
-  if(_bossMode){
-    const stages = getBossStages();
-    if(stages.length < 2) return toast('Un Boss necesita al menos 2 fases');
-    const t={
-      id:uid(), name, type:'boss',
-      stages,
-      prio: document.getElementById('f-prio').value,
-      stat:'wis', createdDate:viewDate, carried:false,
-      deadline, recur,
-      note: document.getElementById('f-note').value.trim(),
-    };
-    db.tasks.push(t); saveDB(); renderTasks();
-    resetBossForm();
-    document.getElementById('f-name').value='';
-    document.getElementById('f-deadline').value='';
-    document.getElementById('f-note').value='';
-    document.getElementById('add-toggle').click();
-    toast('☠️ Boss añadido — '+stages.length+' fases');
-    return;
-  }
-
-  const t={
-    id:uid(), name, prio:document.getElementById('f-prio').value,
-    pomos:0,
-    recur, deadline,
-    note:document.getElementById('f-note').value.trim(),
-    stat:'wis', createdDate:viewDate, carried:false,
-  };
-  db.tasks.push(t); saveDB(); renderTasks();
-  document.getElementById('f-name').value='';
-  document.getElementById('f-deadline').value='';
-  document.getElementById('f-note').value='';
-  document.getElementById('add-toggle').click();
-  toast('⚔️ Quest añadida'+(deadline?' · hasta '+deadline:''));
-});
+// add-toggle and btn-add removed — mq-add-form is now the primary quest form
 
 // ════════════════════════════════════════════════
 //  WATER BANNER
@@ -5507,6 +5416,8 @@ function applyRest(type){
     db.rests.shortUsed  = (db.rests.shortUsed||0) + 1;
     // Reduce each active debuff by 1
     DEBUFFS.forEach(d=>{ if((db.debuffs[d.id]||0)>0) reduceDebuffStack(d.id, 1); });
+    // Halve the missed streak counter
+    db.dailyMissed = Math.floor((db.dailyMissed||0) / 2);
     addXP(REST_SHORT_XP, 'wis');
     toast('🌿 Descanso Corto — debuffs reducidos · +'+REST_SHORT_XP+' XP');
   } else {
@@ -5515,6 +5426,8 @@ function applyRest(type){
     // Clear ALL debuffs
     ensureDebuffs();
     DEBUFFS.forEach(d=>{ db.debuffs[d.id]=0; });
+    // Clear missed streak counter completely
+    db.dailyMissed = 0;
     // Reset burnout
     db.burnoutDismissedDate = todayDK();
     db._burnoutLastShown    = todayDK();
@@ -6682,19 +6595,13 @@ function bdPromote(id){
   bdEnsure();
   const item = db.brainDump.find(x => x.id === id);
   if(!item) return;
-  const toggle = document.getElementById('add-toggle');
-  const wrap = document.getElementById('add-wrap');
-  if(!wrap.classList.contains('open')){
-    toggle.classList.add('open');
-    wrap.classList.add('open');
-  }
-  document.getElementById('f-name').value = item.text;
+  document.getElementById('mqa-name').value = item.text;
   const questTab = document.querySelector('[data-tab="tareas"]');
   if(questTab) questTab.click();
   bdDelete(id);
   setTimeout(()=>{
-    wrap.scrollIntoView({ behavior:'smooth', block:'center' });
-    document.getElementById('f-name').focus();
+    document.getElementById('mqa-name').focus();
+    document.getElementById('mq-add-form').scrollIntoView({ behavior:'smooth', block:'center' });
   }, 120);
   toast('📜 Quest prellenada — añade los detalles', 2200);
 }
