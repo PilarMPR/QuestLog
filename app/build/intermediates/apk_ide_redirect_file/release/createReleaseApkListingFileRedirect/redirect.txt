@@ -1,0 +1,2 @@
+#- File Locator -
+listingFile=../../../../../../../../QuestLog_v8/QuestLog/app/release/output-metadata.json
