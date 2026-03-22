@@ -42,6 +42,23 @@
                     }
                 },
                 {
+                    "source": "D:\\02_Profesional\\01_Projectos\\01_RepositoriosPro\\QuestLog\\app\\src\\main\\res\\values\\colors.xml",
+                    "from": {
+                        "startLines": "6,4,2,3,5",
+                        "startColumns": "4,4,4,4,4",
+                        "startOffsets": "241,153,55,102,199",
+                        "endColumns": "41,45,46,50,41",
+                        "endOffsets": "278,194,97,148,236"
+                    },
+                    "to": {
+                        "startLines": "560,575,576,577,882",
+                        "startColumns": "4,4,4,4,4",
+                        "startOffsets": "29146,30209,30255,30302,52966",
+                        "endColumns": "41,45,46,50,41",
+                        "endOffsets": "29183,30250,30297,30348,53003"
+                    }
+                },
+                {
                     "source": "C:\\Users\\P\\.gradle\\caches\\9.3.1\\transforms\\a37c06e6a16c78aaecb95437887ae819\\workspace\\transformed\\jetified-activity-1.8.0\\res\\values\\values.xml",
                     "from": {
                         "startLines": "2,3",
@@ -75,6 +92,23 @@
                         "endLines": "26,571,572,573,574,965,966,967,2092,5437,5440,5443,10071",
                         "endColumns": "51,60,61,61,63,58,56,53,12,12,12,12,24",
                         "endOffsets": "1301,30016,30078,30140,30204,58576,58633,58687,151010,384451,384577,384705,666946"
+                    }
+                },
+                {
+                    "source": "D:\\02_Profesional\\01_Projectos\\01_RepositoriosPro\\QuestLog\\app\\src\\main\\res\\values\\strings.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "45",
+                        "endOffsets": "96"
+                    },
+                    "to": {
+                        "startLines": "1890",
+                        "startColumns": "4",
+                        "startOffsets": "126827",
+                        "endColumns": "45",
+                        "endOffsets": "126868"
                     }
                 },
                 {
@@ -135,42 +169,6 @@
                     }
                 },
                 {
-                    "source": "D:\\02_Profesional\\01_Projectos\\Apps\\Daily Quests\\DnD productivity app\\QuestLog_v9\\QuestLog\\app\\src\\main\\res\\values\\themes.xml",
-                    "from": {
-                        "startLines": "2",
-                        "startColumns": "4",
-                        "startOffsets": "55",
-                        "endLines": "8",
-                        "endColumns": "12",
-                        "endOffsets": "471"
-                    },
-                    "to": {
-                        "startLines": "6435",
-                        "startColumns": "4",
-                        "startOffsets": "454011",
-                        "endLines": "6441",
-                        "endColumns": "12",
-                        "endOffsets": "454427"
-                    }
-                },
-                {
-                    "source": "D:\\02_Profesional\\01_Projectos\\Apps\\Daily Quests\\DnD productivity app\\QuestLog_v9\\QuestLog\\app\\src\\main\\res\\values\\colors.xml",
-                    "from": {
-                        "startLines": "6,4,2,3,5",
-                        "startColumns": "4,4,4,4,4",
-                        "startOffsets": "241,153,55,102,199",
-                        "endColumns": "41,45,46,50,41",
-                        "endOffsets": "278,194,97,148,236"
-                    },
-                    "to": {
-                        "startLines": "560,575,576,577,882",
-                        "startColumns": "4,4,4,4,4",
-                        "startOffsets": "29146,30209,30255,30302,52966",
-                        "endColumns": "41,45,46,50,41",
-                        "endOffsets": "29183,30250,30297,30348,53003"
-                    }
-                },
-                {
                     "source": "C:\\Users\\P\\.gradle\\caches\\9.3.1\\transforms\\aeb4980dc409227d7218153f8a854729\\workspace\\transformed\\fragment-1.3.6\\res\\values\\values.xml",
                     "from": {
                         "startLines": "2,3,4,5,10",
@@ -187,6 +185,25 @@
                         "endLines": "1720,1753,1789,10695,10699",
                         "endColumns": "56,64,63,24,24",
                         "endOffsets": "116473,118168,120037,702722,702871"
+                    }
+                },
+                {
+                    "source": "D:\\02_Profesional\\01_Projectos\\01_RepositoriosPro\\QuestLog\\app\\src\\main\\res\\values\\themes.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endLines": "8",
+                        "endColumns": "12",
+                        "endOffsets": "471"
+                    },
+                    "to": {
+                        "startLines": "6435",
+                        "startColumns": "4",
+                        "startOffsets": "454011",
+                        "endLines": "6441",
+                        "endColumns": "12",
+                        "endOffsets": "454427"
                     }
                 },
                 {
@@ -278,23 +295,6 @@
                         "startOffsets": "119928",
                         "endColumns": "49",
                         "endOffsets": "119973"
-                    }
-                },
-                {
-                    "source": "D:\\02_Profesional\\01_Projectos\\Apps\\Daily Quests\\DnD productivity app\\QuestLog_v9\\QuestLog\\app\\src\\main\\res\\values\\strings.xml",
-                    "from": {
-                        "startLines": "2",
-                        "startColumns": "4",
-                        "startOffsets": "55",
-                        "endColumns": "45",
-                        "endOffsets": "96"
-                    },
-                    "to": {
-                        "startLines": "1890",
-                        "startColumns": "4",
-                        "startOffsets": "126827",
-                        "endColumns": "45",
-                        "endOffsets": "126868"
                     }
                 },
                 {

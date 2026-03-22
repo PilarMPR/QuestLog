@@ -1,6 +1,6 @@
 <lint-module
     format="1"
-    dir="D:\02_Profesional\01_Projectos\Apps\Daily Quests\DnD productivity app\QuestLog_v9\QuestLog\app"
+    dir="D:\02_Profesional\01_Projectos\01_RepositoriosPro\QuestLog\app"
     name=":app"
     type="APP"
     maven="QuestLog:app:unspecified"
