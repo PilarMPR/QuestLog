@@ -3440,10 +3440,20 @@ function autoInvokeRecurBosses(){
 // ── Render boss tab ──
 function renderBossTab(){
   if(!db.activeBosses) db.activeBosses=[];
-  // Clean up auto-invoked recur bosses that were never touched (0 stages done, not defeated)
-  db.activeBosses = db.activeBosses.filter(b=>
-    !b.recurPeriod || b.defeatedDate || b.stages.some(s=>s.done) || b._manuallyInvoked
-  );
+  // Clean up only truly orphaned auto-invoked bosses (different period, no progress, not manual)
+  const currentPeriods = BOSS_TEMPLATES.filter(t=>t.recur).map(t=>({
+    templateId: t.id, period: bossRecurPeriodKey(t)
+  }));
+  db.activeBosses = db.activeBosses.filter(b=>{
+    if(!b.recurPeriod) return true; // not recurring, keep
+    if(b._manuallyInvoked) return true; // manually invoked, keep
+    if(b.defeatedDate) return true; // defeated, keep for history
+    if(b.stages.some(s=>s.done)) return true; // has progress, keep
+    // Check if this period is still current
+    const tpl = currentPeriods.find(p=>p.templateId===b.templateId);
+    if(tpl && tpl.period && tpl.period===b.recurPeriod) return true; // current period, keep
+    return false; // stale auto-invoke, remove
+  });
   saveDB();
 
   // Custom task bosses (converted via Quests tab 💀 button)
@@ -3975,9 +3985,15 @@ function computeStreak(){
   let s=0, d=new Date();
   for(let i=0;i<365;i++){
     d.setDate(d.getDate()-(i?1:0));
-    const k=dk(d), tasks=allTasksForDate(k), done=(db.log[k]?.done||[]).length;
-    if(!tasks.length) continue;
-    if(done/tasks.length>=0.5) s++; else break;
+    const k=dk(d);
+    // Only count daily/weekday/weekend/habit MQs — exclude bosses and weekly/monthly
+    const dailyTasks=allTasksForDate(k).filter(t=>
+      t.recur!=='weekly' && t.recur!=='monthly' && t.type!=='boss'
+    );
+    if(!dailyTasks.length) continue;
+    const done=(db.log[k]?.done||[]);
+    const doneCount=dailyTasks.filter(t=>done.includes(t.id)).length;
+    if(doneCount/dailyTasks.length>=0.5) s++; else break;
   }
   return s;
 }
@@ -4331,8 +4347,8 @@ function makeEventItem(ev,key){
 function completeEvent(id){
   const ev=db.events.find(e=>e.id===id); if(!ev) return;
   ev.done=true;
+  cancelEventNotif(id); // stop future reminders
   const xpMap={high:40,med:25,low:15};
-  // noSkip events give bonus XP
   const bonus=ev.noSkip?15:0;
   const gained=addXP((xpMap[ev.prio||'med']||25)+bonus, ev.stat||'wis');
   addStatXP(ev.stat||'wis', ev.prio||'med');
@@ -5515,6 +5531,7 @@ function applyRest(type){
   updateHeader();
   updateXPFreezeBar();
   renderRests();
+  renderTasks();
   // Also close burnout overlay if open
   document.getElementById('burnout-overlay').classList.remove('show');
 }
@@ -6439,15 +6456,20 @@ function onBankTransaction(data) {
     }, 800);
 
     renderImpulsePanel();
+    // Refresh Treasury tab if open
+    const trTab = document.getElementById('tab-treasury');
+    if(trTab && trTab.classList.contains('active')) renderTreasury();
     updateHeader();
 
   } else if (data.type === 'income') {
     // Income: just toast + log (no impulse check needed)
     toast('💰 ' + (data.bank||'Banco') + ': +' + (data.amount||0).toFixed(0) + '€ — ' + (data.source||'Ingreso'), 3000);
+    // Refresh treasury
+    const trTab = document.getElementById('tab-treasury');
+    if(trTab && trTab.classList.contains('active')) renderTreasury();
     // Optionally reset budget reminder on salary detection
     const src = (data.source || '').toLowerCase();
     if (src.includes('nomin') || src.includes('salar') || src.includes('pension')) {
-      // New month income — gentle reminder to set budget
       setTimeout(() => toast('💡 ¿Has actualizado tu presupuesto del mes?', 3500), 2000);
     }
   }
