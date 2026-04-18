@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "@capawesome/capacitor-app-update": "^8.0.3"
+  }
+}

@@ -4,7 +4,7 @@
             "outputFile": "com.questlog.app-mergeReleaseResources-29:/values-v16/values-v16.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\P\\.gradle\\caches\\9.3.1\\transforms\\f307133b64f982025ed855d2f63521bd\\workspace\\transformed\\appcompat-1.6.1\\res\\values-v16\\values-v16.xml",
+                    "source": "C:\\Users\\pdev\\.gradle\\caches\\9.3.1\\transforms\\c4159ea85769841182302bd03e80bbfd\\workspace\\transformed\\appcompat-1.6.1\\res\\values-v16\\values-v16.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
@@ -23,7 +23,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\P\\.gradle\\caches\\9.3.1\\transforms\\c672d4611568095ab869ae4d7812f02e\\workspace\\transformed\\core-1.12.0\\res\\values-v16\\values-v16.xml",
+                    "source": "C:\\Users\\pdev\\.gradle\\caches\\9.3.1\\transforms\\66ce207a89f4e1aa6ff197c4b7c72482\\workspace\\transformed\\core-1.12.0\\res\\values-v16\\values-v16.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",

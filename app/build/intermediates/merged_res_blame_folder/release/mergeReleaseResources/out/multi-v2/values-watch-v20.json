@@ -4,7 +4,7 @@
             "outputFile": "com.questlog.app-mergeReleaseResources-29:/values-watch-v20/values-watch-v20.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\P\\.gradle\\caches\\9.3.1\\transforms\\f307133b64f982025ed855d2f63521bd\\workspace\\transformed\\appcompat-1.6.1\\res\\values-watch-v20\\values-watch-v20.xml",
+                    "source": "C:\\Users\\pdev\\.gradle\\caches\\9.3.1\\transforms\\c4159ea85769841182302bd03e80bbfd\\workspace\\transformed\\appcompat-1.6.1\\res\\values-watch-v20\\values-watch-v20.xml",
                     "from": {
                         "startLines": "2,5,8",
                         "startColumns": "4,4,4",

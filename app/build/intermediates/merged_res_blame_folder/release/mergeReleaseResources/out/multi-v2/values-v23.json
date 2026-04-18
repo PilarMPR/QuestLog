@@ -4,7 +4,7 @@
             "outputFile": "com.questlog.app-mergeReleaseResources-29:/values-v23/values-v23.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\P\\.gradle\\caches\\9.3.1\\transforms\\0260ae0fac89ec9456e899938ff50b54\\workspace\\transformed\\cardview-1.0.0\\res\\values-v23\\values-v23.xml",
+                    "source": "C:\\Users\\pdev\\.gradle\\caches\\9.3.1\\transforms\\217079fcce15951a1919f049aeae38db\\workspace\\transformed\\cardview-1.0.0\\res\\values-v23\\values-v23.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
@@ -23,7 +23,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\P\\.gradle\\caches\\9.3.1\\transforms\\f307133b64f982025ed855d2f63521bd\\workspace\\transformed\\appcompat-1.6.1\\res\\values-v23\\values-v23.xml",
+                    "source": "C:\\Users\\pdev\\.gradle\\caches\\9.3.1\\transforms\\c4159ea85769841182302bd03e80bbfd\\workspace\\transformed\\appcompat-1.6.1\\res\\values-v23\\values-v23.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,20,34,35,36,39,43,44,45,46",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4",
@@ -34,7 +34,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\P\\.gradle\\caches\\9.3.1\\transforms\\9f16b4b6abeed066dea861049c3c1291\\workspace\\transformed\\material-1.11.0\\res\\values-v23\\values-v23.xml",
+                    "source": "C:\\Users\\pdev\\.gradle\\caches\\9.3.1\\transforms\\c7e89fd251edbc132f76b7974209edc6\\workspace\\transformed\\material-1.11.0\\res\\values-v23\\values-v23.xml",
                     "from": {
                         "startLines": "2,5,9,13,16,19,22,25,28,32",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4",
