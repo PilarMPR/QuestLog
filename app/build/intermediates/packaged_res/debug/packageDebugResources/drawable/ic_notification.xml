@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+    <!-- Sword icon for notification -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M6.5,17.5L3,21L4.5,21L18,7.5L16.5,6L3,19.5L3,21L4.5,21L17,8L18.5,9.5L20,8L16,4L14.5,5.5L16,7L2.5,20.5L2,21L2,22L5,22L5,21L5.5,20.5L19,7L21,5L19,3L15,3L13,5L14.5,6.5L6.5,14.5Z"/>
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M20,4L16,4L14,6L18,10L20,8L22,6Z"/>
+</vector>

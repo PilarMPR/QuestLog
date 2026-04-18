@@ -1,0 +1,5 @@
+com.questlog.app.test.app-androidTest-0 D:\02_Personal\02_Repos\01_QuestLog\RepoQuestLog\app\build\generated\res\resValues\androidTest\debug
+com.questlog.app.test.app-updated_navigation_xml-1 D:\02_Personal\02_Repos\01_QuestLog\RepoQuestLog\app\build\generated\updated_navigation_xml\debugAndroidTest
+com.questlog.app.test.app-mergeDebugAndroidTestResources-2 D:\02_Personal\02_Repos\01_QuestLog\RepoQuestLog\app\build\intermediates\incremental\debugAndroidTest\mergeDebugAndroidTestResources\merged.dir
+com.questlog.app.test.app-mergeDebugAndroidTestResources-3 D:\02_Personal\02_Repos\01_QuestLog\RepoQuestLog\app\build\intermediates\incremental\debugAndroidTest\mergeDebugAndroidTestResources\stripped.dir
+com.questlog.app.test.app-debugAndroidTest-4 D:\02_Personal\02_Repos\01_QuestLog\RepoQuestLog\app\build\intermediates\merged_res\debugAndroidTest\mergeDebugAndroidTestResources
