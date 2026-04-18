@@ -120,6 +120,58 @@ select{-webkit-appearance:none;}
 .btn-prim{width:100%;background:linear-gradient(135deg,#c4a060,#a87830);border:1px solid var(--gold-deep);color:#fff;font-family:'Cinzel',serif;font-size:.56rem;letter-spacing:.1em;padding:.42rem;cursor:pointer;clip-path:polygon(6px 0%,100% 0%,calc(100% - 6px) 100%,0% 100%);}
 .btn-prim:active{background:linear-gradient(135deg,#a87830,#8a5010);}
 
+.mq-manage-panel{display:none;background:rgba(0,0,0,.08);border-bottom:1px solid var(--parch-border);padding:.4rem .8rem;}
+.mq-manage-panel.open{display:block;}
+.mq-manage-title{font-family:'Cinzel',serif;font-size:11px;color:var(--ink-ghost);letter-spacing:.1em;text-transform:uppercase;margin-bottom:.4rem;}
+.mq-manage-row{display:flex;align-items:center;gap:.5rem;padding:.22rem 0;}
+.mq-mtoggle{width:34px;height:20px;border:1.5px solid rgba(120,80,20,.3);background:rgba(160,40,20,.15);position:relative;cursor:pointer;flex-shrink:0;transition:background .15s;}
+.mq-mtoggle.on{background:rgba(40,120,40,.25);border-color:rgba(40,120,40,.4);}
+.mq-mtoggle::after{content:'';position:absolute;top:2px;left:2px;width:13px;height:13px;background:rgba(160,40,20,.5);transition:all .15s;}
+.mq-mtoggle.on::after{left:calc(100% - 15px);background:rgba(40,150,40,.8);}
+.mq-mname{font-family:'Cinzel',serif;font-size:12px;color:var(--ink);flex:1;}
+.mq-mname.off{opacity:.35;text-decoration:line-through;}
+.mq-mrecur{font-size:11px;color:var(--ink-ghost);}
+/* ── BATTLE MATRIX ── */
+.bm-wrap{padding:.6rem .8rem 6rem;background:var(--parch-mid);min-height:100vh;}
+.bm-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:.6rem;}
+.bm-title{font-family:'Cinzel Decorative',serif;font-size:.7rem;color:var(--gold-deep);letter-spacing:.08em;}
+.bm-add-btn{background:none;border:1px solid var(--gold-deep);color:var(--gold-deep);font-family:'Cinzel',serif;font-size:.5rem;padding:.25rem .6rem;cursor:pointer;letter-spacing:.06em;}
+.bm-grid-wrap{position:relative;width:100%;aspect-ratio:1;background:linear-gradient(135deg,#e8dcc0,#f0e4cc);border:2px solid rgba(120,80,20,.3);overflow:hidden;}
+.bm-grid-wrap::before{content:'';position:absolute;inset:0;background-image:repeating-linear-gradient(0deg,transparent,transparent 39px,rgba(160,120,40,.08) 39px,rgba(160,120,40,.08) 40px),repeating-linear-gradient(90deg,transparent,transparent 39px,rgba(160,120,40,.08) 39px,rgba(160,120,40,.08) 40px);}
+.bm-q{position:absolute;display:flex;align-items:center;justify-content:center;}
+.bm-q-label{font-family:'Cinzel',serif;font-size:.42rem;letter-spacing:.06em;text-transform:uppercase;opacity:.25;pointer-events:none;text-align:center;line-height:1.4;}
+.bm-q.q1{top:0;right:0;width:50%;height:50%;background:rgba(140,20,10,.04);}
+.bm-q.q2{top:0;left:0;width:50%;height:50%;background:rgba(40,80,140,.04);}
+.bm-q.q3{bottom:0;right:0;width:50%;height:50%;background:rgba(40,120,40,.04);}
+.bm-q.q4{bottom:0;left:0;width:50%;height:50%;background:rgba(160,140,40,.04);}
+.bm-axis-x{position:absolute;bottom:50%;left:0;right:0;height:1px;background:rgba(120,80,20,.3);}
+.bm-axis-y{position:absolute;left:50%;top:0;bottom:0;width:1px;background:rgba(120,80,20,.3);}
+.bm-axis-lbl{position:absolute;font-family:'Cinzel',serif;font-size:.36rem;color:rgba(120,80,20,.45);letter-spacing:.08em;pointer-events:none;}
+.bm-diag{position:absolute;top:0;right:0;width:142%;height:1px;background:linear-gradient(90deg,transparent,rgba(180,40,20,.2),transparent);transform:rotate(45deg);transform-origin:top right;pointer-events:none;}
+.bm-token{position:absolute;width:38px;height:38px;transform:translate(-50%,-50%);cursor:grab;touch-action:none;z-index:10;}
+.bm-token-inner{width:36px;height:36px;border:2px solid rgba(120,80,20,.5);background:linear-gradient(135deg,#d4b870,#c8a850);display:flex;align-items:center;justify-content:center;box-shadow:0 2px 6px rgba(80,40,10,.3);}
+.bm-token.bm-done .bm-token-inner{background:linear-gradient(135deg,#b0c890,#90b870);border-color:rgba(40,100,40,.4);opacity:.55;}
+.bm-token-num{font-family:'Cinzel Decorative',serif;font-size:.55rem;color:#3a1a00;font-weight:700;}
+.bm-legend{margin-top:.7rem;}
+.bm-legend-title{font-family:'Cinzel',serif;font-size:.44rem;color:var(--ink-faded);letter-spacing:.1em;text-transform:uppercase;margin-bottom:.4rem;}
+.bm-leg-item{display:flex;align-items:flex-start;gap:.5rem;padding:.35rem .5rem;background:rgba(255,255,255,.3);border:1px solid rgba(120,80,20,.15);margin-bottom:.3rem;}
+.bm-leg-item.bm-done{opacity:.45;}
+.bm-leg-num{width:28px;height:28px;border:1.5px solid rgba(120,80,20,.4);background:linear-gradient(135deg,#d4b870,#c8a850);display:flex;align-items:center;justify-content:center;font-family:'Cinzel Decorative',serif;font-size:.5rem;color:#3a1a00;flex-shrink:0;}
+.bm-leg-body{flex:1;min-width:0;}
+.bm-leg-name{font-family:'Cinzel',serif;font-size:.52rem;color:var(--ink);}
+.bm-leg-name.bm-done{text-decoration:line-through;opacity:.6;}
+.bm-leg-note{font-size:.42rem;color:var(--ink-ghost);margin-top:.1rem;font-style:italic;}
+.bm-leg-acts{display:flex;gap:.25rem;flex-shrink:0;}
+.bm-leg-done{background:none;border:1px solid rgba(40,120,40,.35);color:rgba(40,120,40,.7);font-size:.55rem;padding:.1rem .3rem;cursor:pointer;min-height:28px;min-width:28px;}
+.bm-leg-del{background:none;border:1px solid rgba(160,40,20,.25);color:rgba(160,40,20,.5);font-size:.5rem;padding:.1rem .28rem;cursor:pointer;min-height:28px;min-width:28px;}
+.bm-modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:500;align-items:center;justify-content:center;}
+.bm-modal.open{display:flex;}
+.bm-modal-box{background:linear-gradient(160deg,#f0e4c4,#e8d8b0);border:2px solid rgba(120,80,20,.4);border-top:3px solid var(--gold-deep);padding:1.1rem 1rem .9rem;width:92%;max-width:380px;position:relative;}
+.bm-modal-title{font-family:'Cinzel',serif;font-size:14px;color:var(--gold-deep);letter-spacing:.1em;text-transform:uppercase;margin-bottom:.8rem;}
+.bm-modal-close{position:absolute;top:.6rem;right:.8rem;background:none;border:none;font-size:1rem;color:var(--ink-faded);cursor:pointer;padding:.2rem;}
+.bm-field-lbl{font-family:'Cinzel',serif;font-size:12px;color:var(--ink-faded);letter-spacing:.04em;text-transform:uppercase;margin-bottom:.3rem;display:block;}
+.bm-inp{width:100%;background:rgba(255,255,255,.5);border:1px solid rgba(120,80,20,.3);color:var(--ink);-webkit-text-fill-color:var(--ink);font-family:'IM Fell English',serif;font-size:16px;padding:.55rem .6rem;box-sizing:border-box;margin-bottom:.55rem;min-height:46px;}
+.bm-save-btn{width:100%;background:linear-gradient(135deg,#c4a060,#a87830);border:1px solid var(--gold-deep);color:#fff;-webkit-text-fill-color:#fff;font-family:'Cinzel',serif;font-size:14px;letter-spacing:.1em;padding:.65rem;cursor:pointer;min-height:48px;}
 /* ── TASK LIST ── */
 .list-wrap{padding:.5rem .8rem 6rem;background:var(--parch-mid);}
 .sec-lbl{font-family:'Cinzel',serif;font-size:.44rem;letter-spacing:.16em;color:var(--ink-faded);margin:.5rem 0 .25rem;text-transform:uppercase;}
@@ -1085,7 +1137,8 @@ input[type=range].dev-range::-webkit-slider-runnable-track{background:linear-gra
 .mq-missed{font-family:'Cinzel',serif;font-size:.42rem;color:var(--crit);padding:.03rem .2rem;border:1px solid rgba(192,57,43,.35);background:rgba(192,57,43,.07);}
 .mq-add-btn{background:none;border:1px solid var(--parch-border);color:var(--gold-deep);font-family:'Cinzel',serif;font-size:.58rem;width:20px;height:20px;display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;line-height:1;}
 /* MQ inline add form */
-.mq-add-form{display:flex;align-items:center;flex-wrap:wrap;padding:.4rem .8rem;gap:.3rem;border-bottom:1px solid var(--parch-border);background:rgba(0,0,0,.15);}
+.mq-add-form{display:none;padding:.4rem .8rem;gap:.3rem;border-bottom:1px solid var(--parch-border);background:rgba(0,0,0,.15);}
+.mq-add-form.open{display:flex;align-items:center;flex-wrap:wrap;}
 .mq-add-form input{flex:1;min-width:110px;font-size:.58rem;}
 .mq-add-form select.mqa-recur-sel{width:90px;}
 .mqa-day-wrap{display:none;width:100%;margin-top:.25rem;}
@@ -1426,10 +1479,10 @@ input[type=number].tr-inp::placeholder{-webkit-text-fill-color:rgba(180,140,50,.
 <!-- TABS -->
 <div class="tab-nav">
   <button class="tab-btn active" data-tab="tareas">⚔️ Quests</button>
-  <button class="tab-btn" data-tab="pomo">🍅 Foco</button>
   <button class="tab-btn" data-tab="boss">💀 Bosses</button>
   <button class="tab-btn" data-tab="treasury">💰 Treasury</button>
   <button class="tab-btn" data-tab="resumen">🎲 Stats</button>
+  <button class="tab-btn" data-tab="batalla">⚔ Matriz</button>
   <button class="tab-btn" data-tab="cal">📅 Mapa</button>
 </div>
 
@@ -1507,6 +1560,11 @@ input[type=number].tr-inp::placeholder{-webkit-text-fill-color:rgba(180,140,50,.
     </div>
     <button class="mqa-save" id="mqa-save">Añadir</button>
   </div>
+  <!-- MQ MANAGE PANEL -->
+  <div class="mq-manage-panel" id="mq-manage-panel">
+    <div class="mq-manage-title">⚙ Toca para activar / desactivar quests</div>
+    <div id="mq-manage-list"></div>
+  </div>
   <!-- BRAIN DUMP INBOX -->
   <div class="bd-inbox" id="bd-inbox">
     <div class="bd-inbox-hdr" id="bd-inbox-hdr">
@@ -1522,65 +1580,6 @@ input[type=number].tr-inp::placeholder{-webkit-text-fill-color:rgba(180,140,50,.
 </div>
 
 <!-- ═══ FOCO ═══ -->
-<div class="tab-panel" id="tab-pomo">
-  <div class="pomo-outer">
-    <div class="resume-bar" id="resume-bar">
-      <span style="font-size:1.1rem">⚡</span>
-      <div><div class="rb-title">Sesión interrumpida</div><div class="rb-sub" id="rb-sub">¿Continuamos?</div></div>
-      <button class="rb-btn" id="rb-resume">Reanudar</button>
-    </div>
-    <div class="aq-bar"><div><div class="aq-lbl">Quest activa</div><div class="aq-name" id="aq-name">Ninguna seleccionada</div></div><button class="aq-btn" id="aq-change">Cambiar</button></div>
-    <div class="dur-chips">
-      <div class="dur-chip sel" data-min="25">25m</div>
-      <div class="dur-chip" data-min="50">50m</div>
-      <div class="dur-chip" data-min="90">90m</div>
-      <input type="number" id="dur-custom" placeholder="?m" min="1" max="180">
-    </div>
-    <div class="combat-arena" id="combat-arena">
-      <div class="enemy-card">
-        <div class="enemy-header">
-          <div class="enemy-name" id="enemy-name">⚔️ El Procrastinador</div>
-          <div class="enemy-phase" id="enemy-phase">En guardia</div>
-        </div>
-        <div class="hp-wrap">
-          <div class="hp-lbl"><span>HP del Enemigo</span><span id="hp-txt">100/100</span></div>
-          <div class="hp-track"><div class="hp-fill" id="hp-fill" style="width:100%"></div><div class="hp-drain" id="hp-drain" style="width:100%"></div></div>
-        </div>
-        <div class="enemy-sprite"><div class="enemy-ascii" id="enemy-ascii">( ˘ω˘ )</div><div class="enemy-status" id="enemy-status">Esperando al héroe...</div></div>
-      </div>
-      <div class="combat-log" id="combat-log"><div class="combat-msg">Equipa tu arma y comienza la batalla.</div></div>
-      <div class="ms-track">
-        <div class="mst" id="ms5"><div class="mst-dot"></div><div class="mst-lbl">5m</div></div>
-        <div class="ms-line"></div>
-        <div class="mst" id="ms15"><div class="mst-dot"></div><div class="mst-lbl">15m</div></div>
-        <div class="ms-line"></div>
-        <div class="mst" id="ms25"><div class="mst-dot"></div><div class="mst-lbl">25m</div></div>
-        <div class="ms-line"></div>
-        <div class="mst" id="ms50"><div class="mst-dot"></div><div class="mst-lbl">50m</div></div>
-      </div>
-      <div class="timer-wrap">
-        <div class="ring-c">
-          <svg width="170" height="170" viewBox="0 0 170 170">
-            <circle class="ring-bg" cx="85" cy="85" r="75"/>
-            <circle class="ring-fg" id="p-ring" cx="85" cy="85" r="75" stroke-dasharray="471.24" stroke-dashoffset="0"/>
-          </svg>
-          <div class="timer-inner"><div class="t-clock" id="p-clock">25:00</div><div class="t-phase" id="p-phase">listo</div></div>
-        </div>
-        <div class="p-pips" id="p-pips"></div>
-        <div class="p-ctrls">
-          <button class="pc" id="p-reset">↺</button>
-          <button class="pc pc-play" id="p-play">▶</button>
-          <button class="pc" id="p-skip">⏭</button>
-        </div>
-      </div>
-      <div class="xp-preview"><span class="xpp-base" id="xpp-base">+0 XP WIS</span><span style="color:var(--ink-ghost)">·</span><span class="xpp-bonus" id="xpp-bonus">sin bonus aún</span></div>
-    </div>
-    <div class="log-hdr"><div class="log-title">Batallas de hoy</div><button class="log-clear" id="log-clear">limpiar</button></div>
-    <div id="pomo-log"></div>
-  </div>
-</div>
-
-<!-- ═══ STATS ═══ -->
 <div class="tab-panel" id="tab-resumen">
   <div class="stats-outer">
 
@@ -1774,6 +1773,42 @@ input[type=number].tr-inp::placeholder{-webkit-text-fill-color:rgba(180,140,50,.
 </div>
 
 <!-- ═══ CALENDARIO ═══ -->
+<div class="tab-panel" id="tab-batalla">
+  <div class="bm-wrap">
+    <div class="bm-top">
+      <div class="bm-title">⚔ Mapa de Batalla</div>
+      <button class="bm-add-btn" id="bm-add-btn">＋ Quest</button>
+    </div>
+    <div class="bm-grid-wrap" id="bm-grid">
+      <div class="bm-q q1"><div class="bm-q-label" style="color:#8a1c10">Hacer<br>ahora</div></div>
+      <div class="bm-q q2"><div class="bm-q-label" style="color:#2a5a8a">Delegar<br>/ decidir</div></div>
+      <div class="bm-q q3"><div class="bm-q-label" style="color:#2a5a30">Planificar<br>después</div></div>
+      <div class="bm-q q4"><div class="bm-q-label" style="color:#7a5a38">Eliminar<br>/ ignorar</div></div>
+      <div class="bm-axis-x"></div>
+      <div class="bm-axis-y"></div>
+      <div class="bm-axis-lbl" style="top:6px;left:50%;transform:translateX(-50%)">URGENTE</div>
+      <div class="bm-axis-lbl" style="bottom:6px;left:50%;transform:translateX(-50%)">NO URGENTE</div>
+      <div class="bm-axis-lbl" style="right:4px;top:50%;transform:translateY(-50%) rotate(90deg)">IMPORT.</div>
+      <div class="bm-axis-lbl" style="left:4px;top:50%;transform:translateY(-50%) rotate(-90deg)">NO IMP.</div>
+      <div class="bm-diag"></div>
+    </div>
+    <div class="bm-legend">
+      <div class="bm-legend-title">Quests en el campo de batalla</div>
+      <div id="bm-legend-items"></div>
+    </div>
+  </div>
+</div>
+<div class="bm-modal" id="bm-modal">
+  <div class="bm-modal-box">
+    <button class="bm-modal-close" id="bm-modal-close">✕</button>
+    <div class="bm-modal-title">⚔ Nueva Quest</div>
+    <label class="bm-field-lbl">Nombre</label>
+    <input class="bm-inp" id="bm-inp-name" placeholder="¿Qué tienes que hacer?" maxlength="80">
+    <label class="bm-field-lbl">Nota (opcional)</label>
+    <input class="bm-inp" id="bm-inp-note" placeholder="Contexto, detalle…" maxlength="120">
+    <button class="bm-save-btn" id="bm-save-btn">⚔ Añadir al mapa</button>
+  </div>
+</div>
 <div class="tab-panel" id="tab-cal">
   <div class="cal-outer">
     <div class="cal-topbar">
@@ -2354,10 +2389,81 @@ input[type=number].tr-inp::placeholder{-webkit-text-fill-color:rgba(180,140,50,.
   <div class="dev-save-bar"><button class="dev-save-btn" id="dev-save">▶ APPLY &amp; CLOSE</button></div>
 </div>
 
+<div id="pomo-overlay" style="display:none;position:fixed;inset:0;z-index:400;background:var(--parch-mid);overflow-y:auto;">
+  <div style="display:flex;align-items:center;gap:.5rem;padding:.6rem .8rem;border-bottom:2px solid var(--gold-deep);background:linear-gradient(180deg,#d4c090,#c8b080);position:sticky;top:0;z-index:10;">
+    <button id="pomo-overlay-close" style="background:none;border:1px solid var(--gold-deep);color:var(--gold-deep);font-family:'Cinzel',serif;font-size:.5rem;padding:.25rem .6rem;cursor:pointer;letter-spacing:.06em;">◀ Volver</button>
+    <span style="font-family:'Cinzel Decorative',serif;font-size:.65rem;color:#3a1a00;letter-spacing:.06em;">🍅 Foco</span>
+  </div>
+  <div class="pomo-outer">
+    <div class="resume-bar" id="resume-bar">
+      <span style="font-size:1.1rem">⚡</span>
+      <div><div class="rb-title">Sesión interrumpida</div><div class="rb-sub" id="rb-sub">¿Continuamos?</div></div>
+      <button class="rb-btn" id="rb-resume">Reanudar</button>
+    </div>
+    <div class="aq-bar"><div><div class="aq-lbl">Quest activa</div><div class="aq-name" id="aq-name">Ninguna seleccionada</div></div><button class="aq-btn" id="aq-change">Cambiar</button></div>
+    <div class="dur-chips">
+      <div class="dur-chip sel" data-min="25">25m</div>
+      <div class="dur-chip" data-min="50">50m</div>
+      <div class="dur-chip" data-min="90">90m</div>
+      <input type="number" id="dur-custom" placeholder="?m" min="1" max="180">
+    </div>
+    <div class="combat-arena" id="combat-arena">
+      <div class="enemy-card">
+        <div class="enemy-header">
+          <div class="enemy-name" id="enemy-name">⚔️ El Procrastinador</div>
+          <div class="enemy-phase" id="enemy-phase">En guardia</div>
+        </div>
+        <div class="hp-wrap">
+          <div class="hp-lbl"><span>HP del Enemigo</span><span id="hp-txt">100/100</span></div>
+          <div class="hp-track"><div class="hp-fill" id="hp-fill" style="width:100%"></div><div class="hp-drain" id="hp-drain" style="width:100%"></div></div>
+        </div>
+        <div class="enemy-sprite"><div class="enemy-ascii" id="enemy-ascii">( ˘ω˘ )</div><div class="enemy-status" id="enemy-status">Esperando al héroe...</div></div>
+      </div>
+      <div class="combat-log" id="combat-log"><div class="combat-msg">Equipa tu arma y comienza la batalla.</div></div>
+      <div class="ms-track">
+        <div class="mst" id="ms5"><div class="mst-dot"></div><div class="mst-lbl">5m</div></div>
+        <div class="ms-line"></div>
+        <div class="mst" id="ms15"><div class="mst-dot"></div><div class="mst-lbl">15m</div></div>
+        <div class="ms-line"></div>
+        <div class="mst" id="ms25"><div class="mst-dot"></div><div class="mst-lbl">25m</div></div>
+        <div class="ms-line"></div>
+        <div class="mst" id="ms50"><div class="mst-dot"></div><div class="mst-lbl">50m</div></div>
+      </div>
+      <div class="timer-wrap">
+        <div class="ring-c">
+          <svg width="170" height="170" viewBox="0 0 170 170">
+            <circle class="ring-bg" cx="85" cy="85" r="75"/>
+            <circle class="ring-fg" id="p-ring" cx="85" cy="85" r="75" stroke-dasharray="471.24" stroke-dashoffset="0"/>
+          </svg>
+          <div class="timer-inner"><div class="t-clock" id="p-clock">25:00</div><div class="t-phase" id="p-phase">listo</div></div>
+        </div>
+        <div class="p-pips" id="p-pips"></div>
+        <div class="p-ctrls">
+          <button class="pc" id="p-reset">↺</button>
+          <button class="pc pc-play" id="p-play">▶</button>
+          <button class="pc" id="p-skip">⏭</button>
+        </div>
+      </div>
+      <div class="xp-preview"><span class="xpp-base" id="xpp-base">+0 XP WIS</span><span style="color:var(--ink-ghost)">·</span><span class="xpp-bonus" id="xpp-bonus">sin bonus aún</span></div>
+    </div>
+    <div class="log-hdr"><div class="log-title">Batallas de hoy</div><button class="log-clear" id="log-clear">limpiar</button></div>
+    <div id="pomo-log"></div>
+  </div>
+</div>
+
 <script>
 // ════════════════════════════════════════════════
 //  CORE DATA
 // ════════════════════════════════════════════════
+window.onerror = function(msg, src, line, col, err) {
+  const div = document.createElement('div');
+  div.style.cssText = 'position:fixed;top:0;left:0;right:0;background:#c00;color:#fff;font-size:11px;padding:8px;z-index:99999;font-family:monospace;word-break:break-all;white-space:pre-wrap';
+  div.textContent = '❌ ' + msg + '\nline:' + line + ' col:' + col + (err&&err.stack ? '\n' + err.stack.slice(0,600) : '');
+  document.body ? document.body.appendChild(div) : setTimeout(()=>document.body.appendChild(div), 100);
+  return false;
+};
+
+
 const SK = 'ql_v5';
 
 const RANKS = [
@@ -2457,6 +2563,9 @@ function defaultDB(){
     rests:{ shortDate:'', shortUsed:0, longWeekKey:'', longUsed:false },
     activeBosses:[],
     sleepMode:{until:0},
+    matrix:[],
+    mqDisabled:[],
+    mqStreaks:{},
   };
 }
 function loadDB(){
@@ -2474,6 +2583,9 @@ function loadDB(){
   if(!db.activeBosses) db.activeBosses=[];
   if(!db.impulse) db.impulse = igDefault();
   if(!db.sleepMode) db.sleepMode={until:0};
+  if(!db.matrix) db.matrix=[];
+  if(!db.mqDisabled) db.mqDisabled=[];
+  if(!db.mqStreaks) db.mqStreaks={};
 }
 function saveDB(){ localStorage.setItem(SK,JSON.stringify(db)); }
 
@@ -2722,7 +2834,7 @@ function mqDueOn(q, key){
 function allTasksForDate(key){
   ensureLog(key);
   const skip=db.log[key]?.skipped||[];
-  const recur=MAIN_QUESTS.filter(q=>mqDueOn(q,key)&&!skip.includes(q.id));
+  const recur=MAIN_QUESTS.filter(q=>mqDueOn(q,key)&&!skip.includes(q.id)&&!(db.mqDisabled||[]).includes(q.id));
   const customMqs=(db.dailies||[]).filter(d=>!skip.includes(d.id));
   const oneTime=db.tasks.filter(t=>{
     if(t.carried) return false;
@@ -2745,7 +2857,7 @@ function allTasksForDate(key){
 function allMQsForDate(key){
   const skip=db.log[key]?.skipped||[];
   return [
-    ...MAIN_QUESTS.filter(q=>mqDueOn(q,key)&&!skip.includes(q.id)),
+    ...MAIN_QUESTS.filter(q=>mqDueOn(q,key)&&!skip.includes(q.id)&&!(db.mqDisabled||[]).includes(q.id)),
     ...(db.dailies||[]).filter(d=>!skip.includes(d.id)),
   ];
 }
@@ -2814,8 +2926,22 @@ function renderMQSection(wrap, tasks, done, key){
     <div class="mq-sec-lbl">Misiones Principales</div>
     <div class="mq-prog${doneCount===total&&total>0?' complete':''}" id="mq-prog">${doneCount}/${total}</div>
     ${missed>0?`<div class="mq-missed">💀 ×${missed}</div>`:''}
+    <button class="mq-add-btn" id="_mq_add" title="Añadir misión">＋</button>
+    <button class="mq-add-btn" id="_mq_mgr" title="Gestionar" style="margin-left:2px">⚙</button>
   `;
   wrap.appendChild(hdr);
+  // querySelector after appendChild so DOM is ready
+  const _addBtn = wrap.querySelector('#_mq_add');
+  const _mgrBtn = wrap.querySelector('#_mq_mgr');
+  if(_addBtn) _addBtn.addEventListener('click',()=>{
+    document.getElementById('mq-add-form').classList.toggle('open');
+  });
+  if(_mgrBtn) _mgrBtn.addEventListener('click',()=>{
+    const p=document.getElementById('mq-manage-panel');
+    if(!p) return;
+    const open=p.classList.toggle('open');
+    if(open) renderMQManagePanel();
+  });
   tasks.forEach(t=>{
     const isDone=done.includes(t.id);
     if(t.type==='boss'){
@@ -2886,6 +3012,7 @@ function buildCard(t,key,isMq,isDone){
       <span class="badge b-${t.prio||'med'}">${{high:'ALTA',med:'MEDIA',low:'BAJA'}[t.prio||'med']}</span>
       <span class="badge" style="color:${STAT_COLOR[stat]};border-color:${STAT_COLOR[stat]}">${STAT_EMOJI[stat]} ${stat.toUpperCase()}</span>
       ${t.carried?'<span class="badge b-carry">⏭ aplazada</span>':''}
+      ${typeof mqStreakBadge==='function'?mqStreakBadge(t.id):''}
       ${t.missed?'<span class="badge b-missed">⚠ incumplida</span>':''}
       ${totalPomos?`<span class="badge b-pomo">🍅×${totalPomos}</span>`:''}
       ${t.recur&&t.recur!=='none'?`<span class="badge b-recur">🔄 ${t.recur}</span>`:''}
@@ -2955,7 +3082,7 @@ function buildMQBossCard(t, key, alreadyDone){
   card.querySelectorAll('.boss-stage:not(.done)').forEach(el=>{
     el.addEventListener('click', ()=> toggleMQBossStage(t, el.dataset.stage, key));
   });
-  card.querySelector('[data-mqskip]').addEventListener('click', e=>{
+  const _mqskip=card.querySelector('[data-mqskip]'); if(_mqskip) _mqskip.addEventListener('click', e=>{
     e.stopPropagation(); skipMQ(t.id, key);
   });
   return card;
@@ -3048,6 +3175,7 @@ function toggleTask(t,key,isMq){
     const gained=addXP(XP_BASE[t.prio||'med'], t.stat||'wis');
     addStatXP(t.stat||'wis', t.prio||'med');
     if((db.debuffs.sloth||0)>0){ reduceDebuffStack('sloth',1); }
+    if(isMq){ mqStreakUpdate(t.id,key); const sc=mqStreakGet(t.id); if(sc>1) toast('🔥 '+t.name+' · racha ×'+sc); }
     saveDB(); renderTasks(); updateHeader();
 
     // XP burst float
@@ -3768,7 +3896,7 @@ function buildBossCard(t, key){
     el.addEventListener('click', ()=> toggleBossStage(t.id, el.dataset.stage, key));
   });
   // Delete
-  card.querySelector('[data-bossdel]').addEventListener('click', e=>{
+  const _bossdel=card.querySelector('[data-bossdel]'); if(_bossdel) _bossdel.addEventListener('click', e=>{
     e.stopPropagation();
     db.tasks = db.tasks.filter(x=>x.id!==t.id);
     saveDB(); renderTasks();
@@ -3879,13 +4007,221 @@ document.getElementById('file-input').addEventListener('change',e=>{
 function switchTab(name){
   $$('.tab-btn').forEach(b=>b.classList.toggle('active',b.dataset.tab===name));
   $$('.tab-panel').forEach(p=>p.classList.toggle('active',p.id==='tab-'+name));
-  if(name==='pomo'&&!pomoInited) initPomo();
   if(name==='resumen'){ renderSummary(); renderAchievements(); renderRewards(); renderRests(); }
   if(name==='cal') renderCal();
   if(name==='boss') renderBossTab();
   if(name==='treasury') renderTreasury();
+  if(name==='batalla') renderMatrix();
+  if(name==='pomo') openPomoOverlay();
 }
 $$('.tab-btn').forEach(btn=>btn.addEventListener('click',()=>switchTab(btn.dataset.tab)));
+
+// ════════════════════════════════════════════════
+//  BATTLE MATRIX
+// ════════════════════════════════════════════════
+function renderMatrix(){
+  if(!db.matrix) db.matrix=[];
+  const grid=document.getElementById('bm-grid');
+  const legendItems=document.getElementById('bm-legend-items');
+  if(!grid||!legendItems) return;
+  grid.querySelectorAll('.bm-token').forEach(t=>t.remove());
+  db.matrix.forEach((item,idx)=>{
+    if(item.x==null) return;
+    const token=document.createElement('div');
+    token.className='bm-token'+(item.done?' bm-done':'');
+    token.innerHTML='<div class="bm-token-inner"><span class="bm-token-num">'+(idx+1)+'</span></div>';
+    token.style.left=(item.x*100)+'%';
+    token.style.top=(item.y*100)+'%';
+    grid.appendChild(token);
+    bmBindDrag(token,item,grid);
+    token.addEventListener('click',e=>{
+      if(token._drag) return;
+      db.matrix[idx].done=!db.matrix[idx].done;
+      saveDB(); renderMatrix();
+    });
+  });
+  legendItems.innerHTML='';
+  if(!db.matrix.length){
+    legendItems.innerHTML='<div style="font-size:13px;color:var(--ink-ghost);font-style:italic;padding:.4rem 0">Añade quests y arrástralas al mapa.</div>';
+    return;
+  }
+  db.matrix.forEach((item,idx)=>{
+    const row=document.createElement('div');
+    row.className='bm-leg-item'+(item.done?' bm-done':'');
+    const numDiv='<div class="bm-leg-num">'+(idx+1)+'</div>';
+    const body='<div class="bm-leg-body"><div class="bm-leg-name'+(item.done?' bm-done':'')+'">'+item.name+'</div>'+(item.note?'<div class="bm-leg-note">'+item.note+'</div>':'')+(item.x==null?'<div class="bm-leg-note" style="color:#8a5010">Sin colocar — arrástrala al mapa ↑</div>':'')+'</div>';
+    const acts='<div class="bm-leg-acts"><button class="bm-leg-done">'+(item.done?'↩':'✓')+'</button><button class="bm-leg-del">✕</button></div>';
+    row.innerHTML=numDiv+body+acts;
+    row.querySelector('.bm-leg-done').addEventListener('click',()=>{ db.matrix[idx].done=!db.matrix[idx].done; saveDB(); renderMatrix(); });
+    row.querySelector('.bm-leg-del').addEventListener('click',()=>{ db.matrix.splice(idx,1); saveDB(); renderMatrix(); });
+    legendItems.appendChild(row);
+  });
+}
+function bmBindDrag(token,item,grid){
+  let sx,sy,sl,st,dragging=false;
+  token._drag=false;
+  function start(e){ e.preventDefault(); dragging=true; token._drag=false;
+    const r=grid.getBoundingClientRect(); const t=e.touches?e.touches[0]:e;
+    sx=t.clientX; sy=t.clientY; sl=item.x*r.width; st=item.y*r.height; }
+  function move(e){ if(!dragging) return; e.preventDefault(); token._drag=true;
+    const r=grid.getBoundingClientRect(); const t=e.touches?e.touches[0]:e;
+    let nl=Math.max(0,Math.min(r.width, sl+(t.clientX-sx)));
+    let nt=Math.max(0,Math.min(r.height,st+(t.clientY-sy)));
+    token.style.left=nl+'px'; token.style.top=nt+'px'; }
+  function end(){ if(!dragging) return; dragging=false;
+    const r=grid.getBoundingClientRect();
+    item.x=Math.max(.02,Math.min(.98,parseFloat(token.style.left)/r.width));
+    item.y=Math.max(.02,Math.min(.98,parseFloat(token.style.top)/r.height));
+    token.style.left=(item.x*100)+'%'; token.style.top=(item.y*100)+'%';
+    saveDB(); setTimeout(()=>renderMatrix(),50); }
+  token.addEventListener('touchstart',start,{passive:false});
+  token.addEventListener('touchmove',move,{passive:false});
+  token.addEventListener('touchend',end);
+  token.addEventListener('mousedown',start);
+  window.addEventListener('mousemove',move);
+  window.addEventListener('mouseup',end);
+}
+const _bmAddBtn=document.getElementById('bm-add-btn');
+if(_bmAddBtn) _bmAddBtn.addEventListener('click',()=>{
+  document.getElementById('bm-inp-name').value='';
+  document.getElementById('bm-inp-note').value='';
+  document.getElementById('bm-modal').classList.add('open');
+  setTimeout(()=>document.getElementById('bm-inp-name').focus(),80);
+});
+const _bmClose=document.getElementById('bm-modal-close');
+if(_bmClose) _bmClose.addEventListener('click',()=>document.getElementById('bm-modal').classList.remove('open'));
+const _bmSave=document.getElementById('bm-save-btn');
+if(_bmSave) _bmSave.addEventListener('click',()=>{
+  const name=document.getElementById('bm-inp-name').value.trim();
+  if(!name) return toast('Escribe el nombre de la quest');
+  const note=document.getElementById('bm-inp-note').value.trim();
+  if(!db.matrix) db.matrix=[];
+  db.matrix.push({id:uid(),name,note,x:.5,y:.5,done:false});
+  saveDB(); document.getElementById('bm-modal').classList.remove('open');
+  renderMatrix(); toast('⚔️ Quest añadida — arrástrala al mapa');
+});
+const _bmInp=document.getElementById('bm-inp-name');
+if(_bmInp) _bmInp.addEventListener('keydown',e=>{ if(e.key==='Enter'&&_bmSave) _bmSave.click(); });
+
+// pomo-overlay-close is now before the script tag — safe to query
+(function(){
+  const btn = document.getElementById('pomo-overlay-close');
+  if(btn) btn.addEventListener('click', closePomoOverlay);
+})();
+
+// ── MQ Manage Panel ──
+function renderMQManagePanel(){
+  if(!db.mqDisabled) db.mqDisabled=[];
+  const list = document.getElementById('mq-manage-list');
+  if(!list) return;
+  const allMqs = [...MAIN_QUESTS, ...(db.dailies||[])];
+  const RECUR_LBL = {daily:'diaria',weekday:'L-V',weekend:'finde',weekly:'semanal',monthly:'mensual',
+    mon:'lun',tue:'mar',wed:'mié',thu:'jue',fri:'vie',sat:'sáb',sun:'dom'};
+  list.innerHTML='';
+  allMqs.forEach(q=>{
+    const disabled = db.mqDisabled.includes(q.id);
+    const row = document.createElement('div'); row.className='mq-manage-row';
+    row.innerHTML=`
+      <div class="mq-mtoggle${disabled?'':' on'}" data-id="${q.id}"></div>
+      <span class="mq-mname${disabled?' off':''}">${q.icon||'⚡'} ${q.name}</span>
+      <span class="mq-mrecur">${RECUR_LBL[q.recur]||q.recur}</span>
+    `;
+    row.querySelector('.mq-mtoggle').addEventListener('click',()=>{
+      if(!db.mqDisabled) db.mqDisabled=[];
+      const idx=db.mqDisabled.indexOf(q.id);
+      if(idx>=0) db.mqDisabled.splice(idx,1);
+      else db.mqDisabled.push(q.id);
+      saveDB(); renderMQManagePanel(); renderTasks();
+    });
+    list.appendChild(row);
+  });
+}
+
+// ── Per-quest streak helpers ──
+function mqStreakUpdate(mqId, dateKey){
+  if(!db.mqStreaks) db.mqStreaks={};
+  const s = db.mqStreaks[mqId] || {count:0, lastDate:''};
+  const prev = prevDayKey(dateKey);
+  if(s.lastDate===prev) s.count++;
+  else if(s.lastDate===dateKey) { /* already done today, no change */ }
+  else s.count=1;
+  s.lastDate=dateKey;
+  db.mqStreaks[mqId]=s;
+}
+function mqStreakGet(mqId){
+  if(!db.mqStreaks) return 0;
+  return (db.mqStreaks[mqId]||{}).count||0;
+}
+function mqStreakBadge(id){
+  const sc=mqStreakGet(id);
+  if(sc<2) return '';
+  return '<span class="badge" style="color:#e06010;border-color:#e06010">🔥×'+sc+'</span>';
+}
+// ════════════════════════════════════════════════
+//  BATTLE MATRIX
+// ════════════════════════════════════════════════
+function renderMatrix(){
+  if(!db.matrix) db.matrix=[];
+  const grid=document.getElementById('bm-grid');
+  const legendItems=document.getElementById('bm-legend-items');
+  if(!grid||!legendItems) return;
+  grid.querySelectorAll('.bm-token').forEach(t=>t.remove());
+  db.matrix.forEach((item,idx)=>{
+    if(item.x==null) return;
+    const token=document.createElement('div');
+    token.className='bm-token'+(item.done?' bm-done':'');
+    token.innerHTML='<div class="bm-token-inner"><span class="bm-token-num">'+(idx+1)+'</span></div>';
+    token.style.left=(item.x*100)+'%';
+    token.style.top=(item.y*100)+'%';
+    grid.appendChild(token);
+    bmBindDrag(token,item,grid);
+    token.addEventListener('click',e=>{
+      if(token._drag) return;
+      db.matrix[idx].done=!db.matrix[idx].done;
+      saveDB(); renderMatrix();
+    });
+  });
+  legendItems.innerHTML='';
+  if(!db.matrix.length){
+    legendItems.innerHTML='<div style="font-size:13px;color:var(--ink-ghost);font-style:italic;padding:.4rem 0">Añade quests y arrástralas al mapa.</div>';
+    return;
+  }
+  db.matrix.forEach((item,idx)=>{
+    const row=document.createElement('div');
+    row.className='bm-leg-item'+(item.done?' bm-done':'');
+    const numDiv='<div class="bm-leg-num">'+(idx+1)+'</div>';
+    const body='<div class="bm-leg-body"><div class="bm-leg-name'+(item.done?' bm-done':'')+'">'+item.name+'</div>'+(item.note?'<div class="bm-leg-note">'+item.note+'</div>':'')+(item.x==null?'<div class="bm-leg-note" style="color:#8a5010">Sin colocar — arrástrala al mapa ↑</div>':'')+'</div>';
+    const acts='<div class="bm-leg-acts"><button class="bm-leg-done">'+(item.done?'↩':'✓')+'</button><button class="bm-leg-del">✕</button></div>';
+    row.innerHTML=numDiv+body+acts;
+    row.querySelector('.bm-leg-done').addEventListener('click',()=>{ db.matrix[idx].done=!db.matrix[idx].done; saveDB(); renderMatrix(); });
+    row.querySelector('.bm-leg-del').addEventListener('click',()=>{ db.matrix.splice(idx,1); saveDB(); renderMatrix(); });
+    legendItems.appendChild(row);
+  });
+}
+function bmBindDrag(token,item,grid){
+  let sx,sy,sl,st,dragging=false;
+  token._drag=false;
+  function start(e){ e.preventDefault(); dragging=true; token._drag=false;
+    const r=grid.getBoundingClientRect(); const t=e.touches?e.touches[0]:e;
+    sx=t.clientX; sy=t.clientY; sl=item.x*r.width; st=item.y*r.height; }
+  function move(e){ if(!dragging) return; e.preventDefault(); token._drag=true;
+    const r=grid.getBoundingClientRect(); const t=e.touches?e.touches[0]:e;
+    let nl=Math.max(0,Math.min(r.width, sl+(t.clientX-sx)));
+    let nt=Math.max(0,Math.min(r.height,st+(t.clientY-sy)));
+    token.style.left=nl+'px'; token.style.top=nt+'px'; }
+  function end(){ if(!dragging) return; dragging=false;
+    const r=grid.getBoundingClientRect();
+    item.x=Math.max(.02,Math.min(.98,parseFloat(token.style.left)/r.width));
+    item.y=Math.max(.02,Math.min(.98,parseFloat(token.style.top)/r.height));
+    token.style.left=(item.x*100)+'%'; token.style.top=(item.y*100)+'%';
+    saveDB(); setTimeout(()=>renderMatrix(),50); }
+  token.addEventListener('touchstart',start,{passive:false});
+  token.addEventListener('touchmove',move,{passive:false});
+  token.addEventListener('touchend',end);
+  token.addEventListener('mousedown',start);
+  window.addEventListener('mousemove',move);
+  window.addEventListener('mouseup',end);
+}
 
 // ════════════════════════════════════════════════
 //  STATS SUMMARY
@@ -4778,8 +5114,16 @@ function restorePomoSession(){
   }
 }
 
+function openPomoOverlay(){
+  if(!pomoInited) initPomo();
+  document.getElementById('pomo-overlay').style.display='block';
+  document.getElementById('pomo-overlay').scrollTop=0;
+}
+function closePomoOverlay(){
+  document.getElementById('pomo-overlay').style.display='none';
+}
 function startPomo(task){
-  activeTask=task; switchTab('pomo');
+  activeTask=task; openPomoOverlay();
   const dur=(db.devConfig?.pomoWork||25)*60;
   pomoSecs=0; pomoTotal=dur; pomoPauses=0; milestonesHit=[];
   enemy=ENEMIES.find(e=>e.stat===task.stat)||ENEMIES[0];
@@ -6104,11 +6448,11 @@ function renderTrContracts(){
       </div>
     `;
 
-    card.querySelector('.tr-contract-toggle').addEventListener('click', ()=>{
+    const _ctoggle=card.querySelector('.tr-contract-toggle'); if(_ctoggle) _ctoggle.addEventListener('click', ()=>{
       sub.active = !sub.active;
       saveDB(); renderTrContracts(); scheduleRenewalAlerts();
     });
-    card.querySelector('.tr-contract-del').addEventListener('click', ()=>{
+    const _cdel=card.querySelector('.tr-contract-del'); if(_cdel) _cdel.addEventListener('click', ()=>{
       if(confirm('¿Romper el contrato de "'+sub.name+'"?')){
         if(typeof Android!=='undefined' && Android.isAndroid())
           Android.cancelNotification('renewal_'+sub.id);
@@ -6544,16 +6888,27 @@ function initBankBanner() { initTrBankBanner(); }
 //  BOOT
 // ════════════════════════════════════════════════
 function init(){
-  loadDB();
+  try{ loadDB(); } catch(e){ console.error('loadDB',e); db=defaultDB(); }
   if(!db.achievements) db.achievements={unlocked:[],coins:0};
-  checkStatDecay();
-  checkMidnight();
-  updateHeader();
-  renderTasks();
-  refreshDebuffBar();
-  updateXPFreezeBar();
-  setTimeout(()=>{ checkAchievements(); renderAchievements(); renderRewards(); renderRests(); scheduleAndroidNotifications(); scheduleRenewalAlerts(); scheduleAllEventNotifs(); scheduleQuestNotifs(); initBankBanner(); bdRender(); checkSleepWake(); }, 600);
-  setInterval(()=>{ checkMidnight(); updateWaterBanner(); updateXPFreezeBar(); checkSleepWake(); }, 60000);
+  if(!db.matrix)     db.matrix=[];
+  if(!db.mqDisabled) db.mqDisabled=[];
+  if(!db.mqStreaks)  db.mqStreaks={};
+  try{ checkStatDecay(); } catch(e){ console.warn('checkStatDecay',e); }
+  try{ checkMidnight(); }  catch(e){ console.warn('checkMidnight',e); }
+  try{ updateHeader(); }   catch(e){ console.warn('updateHeader',e); }
+  try{ renderTasks(); }    catch(e){ console.warn('renderTasks',e); }
+  try{ refreshDebuffBar(); } catch(e){}
+  try{ updateXPFreezeBar(); } catch(e){}
+  setTimeout(()=>{
+    ['checkAchievements','renderAchievements','renderRewards','renderRests',
+     'scheduleAndroidNotifications','scheduleRenewalAlerts','scheduleAllEventNotifs',
+     'scheduleQuestNotifs','initBankBanner','bdRender','checkSleepWake'
+    ].forEach(fn=>{ try{ window[fn]&&window[fn](); } catch(e){ console.warn(fn,e); } });
+  }, 600);
+  setInterval(()=>{
+    ['checkMidnight','updateWaterBanner','updateXPFreezeBar','checkSleepWake']
+      .forEach(fn=>{ try{ window[fn]&&window[fn](); } catch(e){}; });
+  }, 60000);
 }
 
 // ════════════════════════════════════════════════
@@ -6964,5 +7319,10 @@ document.getElementById('bug-submit').addEventListener('click',()=>{
 
 init();
 </script>
+
+<!-- ══ POMO OVERLAY ══ -->
+<!-- ═══ STATS ═══ -->
+</div>
+
 </body>
 </html>
